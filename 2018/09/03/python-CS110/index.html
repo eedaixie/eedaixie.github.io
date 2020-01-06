@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Python代写：CS110 Higher Order Functions | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="入门级的Python作业。&lt;&#x2F;p&gt; Requirement  In the problems from the last homework, we did a bit of rudimentary Scrabble scoring. Your ultimate task here is to write a function that takes as input a rack - a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python代写：CS110 Higher Order Functions">
+<meta property="og:url" content="http://eedaixie.github.io/2018/09/03/python-CS110/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="入门级的Python作业。&lt;&#x2F;p&gt; Requirement  In the problems from the last homework, we did a bit of rudimentary Scrabble scoring. Your ultimate task here is to write a function that takes as input a rack - a">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-09-03T15:19:00.000Z">
+<meta property="article:modified_time" content="2020-01-06T00:21:01.441Z">
+<meta property="article:author" content="eedaixie">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://eedaixie.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-python-CS110" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/03/python-CS110/" class="article-date">
+  <time datetime="2018-09-03T15:19:00.000Z" itemprop="datePublished">2018-09-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python代写：CS110 Higher Order Functions
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>入门级的Python作业。<br><a id=more></a>&lt;/p&gt;</p>
+<h2 id=Requirement><a href=#Requirement class=headerlink title=Requirement></a>Requirement</h2>
+
+<p>In the problems from the last homework, we did a bit of rudimentary Scrabble scoring. Your ultimate task here is to write a function that takes as input a rack - a list of letters - and returns the highest scoring word that can be made with those letters. This is the key ingredient in a computerized Scrabble game!</p>
+<a id="more"></a>
+<p>In this problem, you may use recursion as well as the built-in higher-order functions map, filter, and reduce. In fact, if you write a function that needs to process a long list (e.g. a dictionary) with more than a few hundred items in it, you are much better off letting map, filter, or reduce cruise through those lists since they have been optimized to work very fast.</p>
+<p>There will be a few places here where using anonymous functions (lambda) is probably the cleanest and nicest way to do business. Use it when it’s the cleanest way to proceed.</p>
+<p>One of the objectives of this problem is to have you think about designing a more complicated program that involves several functions. You have complete autonomy in deciding what functions to write in order to reach the ultimate goal (see more on the two required functions below). Try to think carefully about which functions you will need and try to implement those functions so that they are as simple and clean as possible. Part of your score on this problem will be based on the elegance of your overall design and individual functions.</p>
+<p>Our solution has fewer than 9 functions, two of which we modified from our solution to Homework 1. The remaining 7 (or so) functions range from one to four lines of code per function. While you are not required to have the same number of functions and you may have a few slightly longer functions, this is intended to indicate that there is not much code that needs to be written here!</p>
+<p>Be sure to have a comment at the top of the file with your name(s), the filename, and the date. Any function that is even a bit complicated should at least have a short comment explaining to the reader how this function works. Also, include a docstring for every function that you write.</p>
+<p>All of your work should go into a single file named scrabble.py. Any tests and their results should go into this file, commented out of course. Make sure your file loads without producing any output. We will test your program by loading this file and testing your functions. Be sure they are properly named.</p>
+<ol><li>Firstly, rewrite your definition of letterScore(letter, scoreList> so it makes use of the built-in function filter.</li><li>Secondly, rewrite your definition of wordScore(word, scoreList) so that it makes use of the built-in map and reduce.</li><li>As an exercise in writing list comprehensions, define the following variables, using expressions made up of list comprehensions:<ul><li>words – all of the words in the list Dictionary.</li><li>twoLetterWords – all of the words in the list Dictionary having exactly two letters.</li><li>lengths – a list of only the lengths of all words in Dictionary.</li></ul></li><li>Now the main problem.<br>A bit later in this problem, we’ll give you a fairly large dictionary of English words to use. For now, we recommend that you use the following tiny dictionary during the course of testing and development. Include this line near the top of your file. Now, it’s a global variable that can be used by any of your functions in that file. Similarly, you should include the scrabble letter score list from Homework 1.</li></ol>
+
+<pre><code>Dictionary = ["a", "am", "at", "apple", "bat", "bar", "babble", "can", "foo", "spam", "spammy", "zzyzva"] 
+</code></pre>
+
+<p>Don’t try to change the values of these global variables! As we’ll see soon, that can make Python angry. However, there’s no need to change the contents of the Dictionary or the scrabble letter scores during execution of the program.</p>
+<h2 id=The-details><a href=#The-details class=headerlink title="The details"></a>The details</h2>
+
+<p>Ultimately, there are two functions that we will be testing.</p>
+<ul><li>scoreList(Rack) takes as input a Rack which is a list of lower-case letters and returns a list of all of the words in the global Dictionary that can be made from those letters and the score for each one. Specifically, this function returns a list of lists, each of which contains a string that can be made from the Rack and its Scrabble score. Here are some examples using the tiny Dictionary above:<figure class="highlight bash"><table><tr><td class=gutter><pre><span class=line>1</span><br><span class=line>2</span><br><span class=line>3</span><br><span class=line>4</span><br></pre><td class=code><pre><span class=line>>>> scoreList([<span class=string>"a"</span>, <span class=string>"s"</span>, <span class=string>"m"</span>, <span class=string>"t"</span>, <span class=string>"p"</span>])</span><br><span class=line>[[<span class=string>'a'</span>, 1], [<span class=string>'am'</span>, 4], [<span class=string>'at'</span>, 2], [<span class=string>'spam'</span>, 8]]</span><br><span class=line>>>> scoreList([<span class=string>"a"</span>, <span class=string>"s"</span>, <span class=string>"m"</span>, <span class=string>"o"</span>, <span class=string>"f"</span>, <span class=string>"o"</span>])</span><br><span class=line>[[<span class=string>'a'</span>, 1], [<span class=string>'am'</span>, 4], [<span class=string>'foo'</span>, 6]]</span><br></pre></table></figure></li></ul>
+
+<p>The order in which the words are presented is not important.</p>
+<ul><li>bestWord(Rack) takes as input a Rack as above and returns a list with two elements: the highest possible scoring word from that Rack followed by its score. If there are ties, they can be broken arbitrarily. Here is an example, again using the tiny Dictionary above:<figure class="highlight bash"><table><tr><td class=gutter><pre><span class=line>1</span><br><span class=line>2</span><br></pre><td class=code><pre><span class=line>>>> bestWord([<span class=string>"a"</span>, <span class=string>"s"</span>, <span class=string>"m"</span>, <span class=string>"t"</span>, <span class=string>"p"</span>])</span><br><span class=line>[<span class=string>'spam'</span>, 8]</span><br></pre></table></figure></li></ul>
+
+<p>Aside from these two functions, all of the other helper functions are up to you! Some of those helper functions may be functions that you wrote in Homework 1 or slight variants of those functions. However, you might find it useful to use a strategy in which you write a function that determines whether or not a given string can be made from the given Rack list. Then, another function can use that function to determine the list of all strings in the dictionary that can be made from the given Rack. Finally, another function might score those words.</p>
+<p>Remember to use map, reduce, or filter where appropriate - they are powerful and they are optimized to be very fast.</p>
+<p>Test each function carefully with small test inputs before you proceed to write the next function. This will save you a lot of time and aggravation!</p>
+<p>A reminder about in: Imagine that you are writing a function that attempts to determine if a given string S can be made from the letters in the Rack list. You might be tempted to scramble (“permute” to use a technical term) the Rack in every possible way as part of this process, but that is more work than necessary. Instead, you can test if the first symbol in your string, S[0], appears in the rack with the statement:<br><figure class="highlight python"><table><tr><td class=gutter><pre><span class=line>1</span><br><span class=line>2</span><br><span class=line>3</span><br><span class=line>4</span><br></pre><td class=code><pre><span class=line><span class=keyword>if</span> S[<span class=number>0</span>] <span class=keyword>in</span> Rack:</span><br><span class=line>  <span class=comment># if True you will end up here</span></span><br><span class=line><span class=keyword>else</span>:</span><br><span class=line>  <span class=comment># if False you will end up here</span></span><br></pre></table></figure></p>
+<p>That in feature is very handy. Now, recursion will let you do the rest of the work without much effort on your part!<br>Although we don’t expect that you will end up doing huge recursive calls, you should know that Python can get snippy when there are a lot of recursive calls. By default, Python generally complains when there are 1000 or more recursive calls of the same function. To convince Python to be friendlier, you can use the following at the top of your file.<br><figure class="highlight python"><table><tr><td class=gutter><pre><span class=line>1</span><br><span class=line>2</span><br><span class=line>3</span><br></pre><td class=code><pre><span class=line><span class=keyword>import</span> sys</span><br><span class=line></span><br><span class=line>sys.setrecursionlimit(<span class=number>10000</span>)  <span class=comment># Allows up to 10000 recursive calls; the maximum permitted ranges from system to system</span></span><br></pre></table></figure></p>
+<h2 id=Trying-it-with-a-bigger-dictionary><a href=#Trying-it-with-a-bigger-dictionary class=headerlink title="Trying it with a bigger dictionary"></a>Trying it with a bigger dictionary</h2>
+
+<p>Finally, if you want to test out a big dictionary (it’s more fun than the little one above), you can download the file. It contains a large list of words (a bit over 4000 words). The list is still called Dictionary. After you have downloaded the file and placed it in the same directory as your Python file, you should do the following at the top of your Python file:<br><figure class="highlight python"></p>
+<table><tr><td class=gutter><pre><span class=line>1</span><br></pre><td class=code><pre><span class=line><span class=keyword>from</span> dict <span class=keyword>import</span> *</span><br></pre></table>
+
+<p>&lt;/figure&gt;</p>
+<p>Now, you can refer to Dictionary as a global variable. This is much nicer than cutting-and-pasting that very large list into your Python file. Here are some examples using that Dictionary.<br><figure class="highlight bash"></p>
+<table><tr><td class=gutter><pre><span class=line>1</span><br><span class=line>2</span><br></pre><td class=code><pre><span class=line>>>> scoreList([<span class=string>'w'</span>, <span class=string>'y'</span>, <span class=string>'l'</span>, <span class=string>'e'</span>, <span class=string>'l'</span>, <span class=string>'o'</span>])</span><br><span class=line>[[<span class=string>'leo'</span>, 3], [<span class=string>'low'</span>, 6], [<span class=string>'lowly'</span>, 11], [<span class=string>'ow'</span>, 5], [<span class=string>'owe'</span>, 6], [<span class=string>'owl'</span>, 6], [<span class=string>'we'</span>, 5], [<span class=string>'well'</span>, 7], [<span class=string>'woe'</span>, 6], [<span class=string>'yell'</span>, 7], [<span class=string>'yo'</span>, 5]]</span><br></pre></table>
+
+<p>&lt;/figure&gt;</p>
+<p>Notice that “yellow” is not in this dictionary. We “cropped” off words of length 6 or more to keep the dictionary from getting too large. Finally, here is an example of bestWord in action:<br><figure class="highlight bash"></p>
+<table><tr><td class=gutter><pre><span class=line>1</span><br><span class=line>2</span><br><span class=line>3</span><br><span class=line>4</span><br><span class=line>5</span><br><span class=line>6</span><br></pre><td class=code><pre><span class=line>>>> bestWord([<span class=string>'w'</span>, <span class=string>'y'</span>, <span class=string>'l'</span>, <span class=string>'e'</span>, <span class=string>'l'</span>, <span class=string>'o'</span>])</span><br><span class=line>[<span class=string>'lowly'</span>, 11]</span><br><span class=line>>>> bestWord([<span class=string>"s"</span>, <span class=string>"p"</span>, <span class=string>"a"</span>, <span class=string>"m"</span>, <span class=string>"y"</span>])</span><br><span class=line>[<span class=string>'may'</span>, 8]</span><br><span class=line>>>> bestWord([<span class=string>"s"</span>, <span class=string>"p"</span>, <span class=string>"a"</span>, <span class=string>"m"</span>, <span class=string>"y"</span>, <span class=string>"z"</span>])</span><br><span class=line>[<span class=string>'zap'</span>, 14]</span><br></pre></table>
+
+<p>&lt;/figure&gt;</p>
+<p>And an even bigger dictionary!</p>
+<p>Want to try this with an even bigger dictionary? We’ve got one! The bad news is that it causes IDLE to crash on some computers. However, if you are running Python without IDLE (e.g. from the Unix shell) then this dictionary should work just fine!<br><figure class="highlight python"></p>
+<table><tr><td class=gutter><pre><span class=line>1</span><br></pre><td class=code><pre><span class=line><span class=keyword>from</span> bigdict <span class=keyword>import</span> *</span><br></pre></table>
+
+<p>&lt;/figure&gt;</p>
+<p>The dictionary is still called Dictionary and it is available as a global variable. Here is an example of it in use:<br><figure class="highlight bash"><table><tr><td class=gutter><pre><span class=line>1</span><br><span class=line>2</span><br></pre><td class=code><pre><span class=line>>>> scoreList([<span class=string>'a'</span>, <span class=string>'b'</span>, <span class=string>'v'</span>, <span class=string>'x'</span>, <span class=string>'y'</span>, <span class=string>'y'</span>, <span class=string>'z'</span>, <span class=string>'z'</span>, <span class=string>'z'</span>])</span><br><span class=line>[[<span class=string>'ab'</span>, 4], [<span class=string>'aby'</span>, 8], [<span class=string>'ax'</span>, 9], [<span class=string>'ay'</span>, 5], [<span class=string>'ba'</span>, 4], [<span class=string>'bay'</span>, 8], [<span class=string>'by'</span>, 7], [<span class=string>'ya'</span>, 5], [<span class=string>'yay'</span>, 9], [<span class=string>'za'</span>, 11], [<span class=string>'zax'</span>, 19], [<span class=string>'zyzzyva'</span>, 43], [<span class=string>'zzz'</span>, 30]]</span><br></pre></table></figure></p>
+<p>&lt;/div&gt;</p>
+<div></div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://eedaixie.github.io/2018/09/03/python-CS110/" data-id="ck51up9gj000b6gzwbq5icued" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/09/04/c++-CS5201/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          C++代写：CS5201 Quaternion
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/05/23/java-CS201/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java代写：CS201 Hash Table, Hash Function Comparison and Optional BST in C</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/12/19/python-CSCA48/">Python代写：CSCA48 Snakes And Ladders</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/16/c++-CS206/">C++代写：CS206 Email Handler</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/19/c-CSE320/">C语言代写：CSE320 SFISH Shell</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/11/java-SWEN20003/">Java代写：SWEN20003 Graphical Game Engine</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/05/c-COMP10002/">C代写：COMP10002 Indexed Document Retrieval</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 eedaixie<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

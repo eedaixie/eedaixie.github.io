@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>C语言代写：CSE320 SFISH Shell | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="命令行工具，操作系统里的I&#x2F;O重定向，管道操作，也就是&lt;code&gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言代写：CSE320 SFISH Shell">
+<meta property="og:url" content="http://eedaixie.github.io/2018/09/19/c-CSE320/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="命令行工具，操作系统里的I&#x2F;O重定向，管道操作，也就是&lt;code&gt;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-09-20T01:19:00.000Z">
+<meta property="article:modified_time" content="2020-01-06T00:26:01.822Z">
+<meta property="article:author" content="eedaixie">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://eedaixie.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-c-CSE320" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/19/c-CSE320/" class="article-date">
+  <time datetime="2018-09-20T01:19:00.000Z" itemprop="datePublished">2018-09-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C语言代写：CSE320 SFISH Shell
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>命令行工具，操作系统里的I/O重定向，管道操作，也就是&lt;code><</code>，<code&gt;></code>和<code>|</code>这三个符号。<br><a id=more></a>&lt;/p&gt;</p>
+<h2 id=Part-III-Output-Redirection><a href=#Part-III-Output-Redirection class=headerlink title="Part III: Output Redirection"></a> Output Redirection</h2>
+
+<p>One of the most powerful features of a Unix-like shell is the ability to compose a series of simple applications to create a complex workflow. The key feature that enables this composition is output redirection.</p>
+<p>Redirection is accomplished by three special characters &lt;code><</code> , <code&gt;></code> , and <code>|</code> . You will need to add logic to your parsing code that identifies these characters and uses them to identify shell-level directives, rather than simply passing them to exec.</p>
+<a id="more"></a>
+<p>The first two characters, &lt;code><</code> and <code&gt;></code> , can direct input from a file into a program and output from a program respectively.</p>
+<pre><code>sfish > ls - l > newfile
+sfish > grep .c < newfile
+# Output from ls -l
+sfish > echo "Hello, World!" > file
+sfish > cat file
+Hello, World!
+sfish>
+</code></pre>
+
+<p>In the example above, the standard output of <code>ls -l</code> is redirected to a file named newfile. If newfile didn’t exist before the command was executed, the shell created it. If newfile did exist before the command was executed, the shell overwrote it.</p>
+<p>The example above also shows the input redirection of <code>grep</code> using &lt;code><</code>. The standard input of <code>grep</code> is set to the file newfile rather than input from the terminal.</p>
+<blockquote>The <code>ls</code> program does not know it is writing to a file and is not passed the string <code>> newfile</code> as an argument. Instead, the shell redirects stdout of <code>ls</code> to the file. Similarly, in the second command, the contents of newfile are passed to the <code>grep</code> program as its standard input ( stdin ).</p></blockquote>
+
+<p><p>You are not constrained to using just standard input (handle 0) and standard output (handle 1) with these operators. You should be able to put 2 in front of the <code&gt;></code> operator to redirect output of stderr to a file.</p>
+<pre><code>sfish > somecommand 2>err.log
+# This example runs "somecommand" and redirects its stderr to "err.log".
+</code></pre>
+
+<p>In the example above, the output from stderr is redirected to the file err.log . Only the output from stderr is written to this file. If <code&gt;></code> is used without a handle, then it redirects output from stdout only.</p>
+<pre><code>sfish >./hw1 < in.txt > out.txt
+</code></pre>
+
+<p>In the example above both the input and output of ./hw1 are being redirected. hw1’s input will be taken from the file in.txt and it’s output will be written to the file out.txt .</p>
+<p>You’ll have to learn how to manipulate file descriptors carefully using system calls such as open, close, read, write, dup/dup2, and more.</p>
+<p>Finally, you can redirect output from one application to another using the pipe <code>|</code> operator:</p>
+<pre><code>sfish > ls | grep '.txt' | wc -l
+4
+</code></pre>
+
+<p>In this example, the shell creates three child processes. The first, <code>ls</code> , reads the contents of the home directory, which gets redirected to the <code>grep</code> program. <code>grep</code> searches for all instances of the string ‘.txt’ in it’s input (the output of <code>ls</code> ). The output of <code>grep</code> , i.e., all files with the <code>.txt</code> extension, is then sent to the wc program. wc counts how many lines of input it is given. (the number of <code>.txt</code> files in the home directory)</p>
+<p>The following features must be implemented:</p>
+<ul><li>Add support for all three forms of redirection described above, > , < , and | .</li><li>Be sure to run several test cases for piping applications together and multiple redirection. Ensure that termination is handled cleanly.</li><li>Examples:<ul><li>hw1 < in.txt > out.txt</li><li>ls | grep ‘.txt’ | wc -l</li></ul></li></ul>
+
+<p>&lt;</p>
+<p>blockquote&gt;</p>
+<p>Look at the man pages for grep, sort, wc, head, tail, etc. for parameters and flags.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://eedaixie.github.io/2018/09/19/c-CSE320/" data-id="ck51up9g300036gzw3uqccmc4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/16/c++-CS206/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          C++代写：CS206 Email Handler
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/11/java-SWEN20003/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java代写：SWEN20003 Graphical Game Engine</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/12/19/python-CSCA48/">Python代写：CSCA48 Snakes And Ladders</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/16/c++-CS206/">C++代写：CS206 Email Handler</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/19/c-CSE320/">C语言代写：CSE320 SFISH Shell</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/11/java-SWEN20003/">Java代写：SWEN20003 Graphical Game Engine</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/05/c-COMP10002/">C代写：COMP10002 Indexed Document Retrieval</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 eedaixie<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

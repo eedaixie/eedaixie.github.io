@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Python代写：COMP1039-Programming Assignment 2 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Python 编写 BlackJack 游戏    Assignment Overview  There are two (related) parts to this assignment: Part I:  Implementation of the game Blackjack diceYou are required to write a Python program that allow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python代写：COMP1039-Programming Assignment 2">
+<meta property="og:url" content="http://eedaixie.github.io/2017/12/15/python-COMP1039/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Python 编写 BlackJack 游戏    Assignment Overview  There are two (related) parts to this assignment: Part I:  Implementation of the game Blackjack diceYou are required to write a Python program that allow">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-12-16T05:29:00.000Z">
+<meta property="article:modified_time" content="2020-01-05T22:48:22.401Z">
+<meta property="article:author" content="eedaixie">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://eedaixie.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-python-COMP1039" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/15/python-COMP1039/" class="article-date">
+  <time datetime="2017-12-16T05:29:00.000Z" itemprop="datePublished">2017-12-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python代写：COMP1039-Programming Assignment 2
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4>Python 编写 BlackJack 游戏</h4>
+
+<hr />
+
+<h2>Assignment Overview</h2>
+
+<p>There are <strong>two (related)</strong> parts to this assignment:</p>
+<p><strong>Part I:  Implementation of the game Blackjack dice</strong><br>You are required to write a Python program that allows a player to play  a game of  Blackjack dice  against the computer. The program will allow a player to play as many games of Blackjack dice as they wish.  Please ensure that you read sections titled ‘Part I specification’ below for further details.</p>
+<p><strong>Part II:  High scores player information</strong><br>You are required to write a Python program  that will keep a record of the players who achieve high scores while playing Blackjack.  The program will allow players to play Blackjack against the computer and will maintain information on high scoring players (using Lists).  Player information will be stored in a text file that will be read in when the program commences.  Once the initial high scores data has been read in from the file, the program should allow the user to interactively query and manipulate the high scores infor-mation as well as play Blackjack against the computer (using the program you developed in Part I).  Please ensure that you read sections titled ‘Part II speci-fication’ below for further details.<br><a id="more"></a><br><strong><font color=red>Note:  Although this assignment has two related parts, if you are not able to complete Part I of the assignment, you  can  still  implement Part II.  Likewise, if you are not able to complete Part II of the assignment, you can still implement Part I.</font></strong></p>
+<p><strong>Please ensure that you read sections titled ‘Part I Specification’ and ‘Part II Specification’ below for further details.</strong></p>
+<h2>Part I Specification – Blackjack Dice</h2>
+
+<p>You are required to write a Python program called yourID_blackjack.py  that allows a player to play <strong>a game of Blackjack dice</strong> against a computer opponent.  The program will allow a player to play as many games of Blackjack dice as they wish.</p>
+<p><strong>Blackjack Dice Rules (Two-Dice)</strong></p>
+<p>Blackjack is a popular card game where the goal is to beat the dealer by having the higher hand which is not more than 21.</p>
+<p><strong>For this assignment:</strong></p>
+<p>We will change this card game into a dice game. Instead of a deck of 52 cards, we will use  two 10 sided dice in order to have the higher total, or “hand” which is not more than 21.</p>
+<blockquote>
+  <ul>
+  <li>You are to simulate two 10 sided dice in order to play the game of Blackjack dice (the face value on the die are 1 - 10).</li>
+  <li>Blackjack hands are scored by their point total.</li>
+  <li>The hand with the highest total wins, as long as it isn't more than 21.</li>
+  <li>A hand with a higher total than 21 is said to 'bust'.</li>
+  <li>Rolling a one (1) counts as eleven (11) unless  this would cause the player to bust, in which case it is worth one (1).</li>
+  <li>All other values are worth their face value rolled.</li>
+  </ul>
+</blockquote>
+
+<p><strong>Game play:</strong></p>
+<blockquote>
+  <ol>
+  <li>The dealer (in this case the computer) rolls one 10-sided dice (the face value on the die are 1 – 10).  The dice value is displayed to the screen.</li>
+  <li>The player then plays out his/her hand and rolls two 10-sided dice (the face value on the die are 1 – 10).</li>
+  <li>During the player's turn, the player is faced with two options, either:
+
+  <blockquote>
+    a. Hit: After the initial roll of two dice, a player may choose to roll an additional die as many times as he/she wishes, adding the resulting number from each roll to his/her total.
+    b. Stand: Do not roll again. The player's turn is over.
+  </blockquote></li>
+  <li>The player continues to roll one die until, the player chooses to stand, or the player busts (that is, exceeds a total of 21). The player's turn is over after deciding to stand or if he/she busts.</p></li>
+  <li>Once the player has finished, the dealer (computer) plays out the dealer's hand.
+  > a. The dealer (computer) rolls the second 10-sided dice and displays his/her initial hand to the screen.
+  > b. Following this, dealer repeatedly rolls one die until, the dealer’s total is 17 or greater, or the dealer busts (that is, exceeds a total of 21).
+  > Note:  the dealer <strong>always</strong> plays his/her hand regardless of what happens with the player’s hand.</li>
+  <li>A winner is then determined based on the player and dealer's hand values according to the Blackjack rules listed below and displayed to the screen.</li>
+  </ol>
+</blockquote>
+
+<p><strong>Rules:</strong>
+
+<blockquote>
+  <ul>
+  <li>If the player busts, he/she loses even if the dealer also busts.</li>
+  <li>If the player and the dealer have the same point value, it is called a ‘push’ and neither win the hand (draw).</li>
+  <li>A die roll of one (1) counts as eleven (11) unless this would cause the player/dealer to bust, in which case it is worth one (1).</li>
+  <li>The dealer must hit until he or she has a point value of 17 or greater.</li>
+  <li>The player cannot stand on a point value less than 15.</li>
+  <li>The player with the higher hand that does not exceed 21 wins the game!</li>
+  </ul>
+</blockquote>
+
+<h2>Practical Requirements (Part I)</h2>
+
+It is recommended that you develop this part of the assignment in the suggested stages.
+
+<strong>It is expected that your solution will include the use of:</strong>
+
+<blockquote>
+  <ul>
+  <li>Your solution in a file (module) called yourID_blackjack.py.</li>
+  <li>Appropriate and well constructed while and/or for loops.  (Marks will be lost if you use break statements in order to exit from loops).</li>
+  <li>Appropriate if, if-else, if-elif-else statements (as necessary).</li>
+  <li>The use of the random.randint(1,10) function in order to simulate the roll of the dice.</li>
+  <li>Appropriate constants, i.e. PLAYER_MIN_SCORE = 15, DEALER_MIN_SCORE = 17, etc.</li>
+  <li>The following functions:
+
+  <blockquote>
+    <ol>
+    <li>get_choice(): prompts for, reads and validates the user's choice of h or s (hit or stand).
+    > - Accepts no parameters and returns the choice entered by the user.</li>
+    <li>deal_players_hand():  plays out the player's hand.
+
+    <blockquote>
+      <ul>
+      <li>Accepts no parameters and returns the value (total) of the player's hand.</li>
+      <li>Calls function get_choice().</li>
+      <li>Rolls two 10-sided dice (value 1 – 10) and displays the initial hand to the screen</li>
+      <li>The player is faced with two options, either:
+      > - Hit: After the initial roll of two dice, a player may choose to roll an additional die as many times as he/she wishes, adding the number from each roll to his/her total.
+      > - Stand: Do not roll again.</li>
+      <li>The function repeatedly rolls one die until, the player chooses to stand, or  the player busts (more than 21) – then the player’s turn is over</li>
+      </ul>
+    </blockquote></li>
+    <li>deal_dealers_hand(die_value):  plays out the dealer's hand.
+
+    <blockquote>
+      <ul>
+      <li>The function accepts the initial die roll value as a parameter and returns the value (total) of the dealer's hand.</li>
+      <li>The dealer (computer) rolls the second 10-sided dice and displays his/her initial hand to the screen.</li>
+      <li>The dealer repeatedly rolls one die until, the dealer's total is 17 or greater, or the dealer busts (more than 21).</li>
+      <li>Note:  the dealer  always  plays his/her hand  regardless of what happens with the player's hand.</li>
+      </ul>
+    </blockquote></li>
+    <li>determine_winner(): determines the winner based on the player and dealer's hand values and according to the Blackjack rules.
+
+    <blockquote>
+      <ul>
+      <li>Accepts the player's and the dealer's total hand value as parameters and returns result (see below).</li>
+      <li>The hand values along with the winner is displayed to the screen (as seen in the sample output).  play_blackjack()</li>
+      <li>The function returns the zero (0) if the dealer wins, one (1) if the game is a draw (push) and three (3) if the player wins.</li>
+      </ul>
+    </blockquote></li>
+    <li>play_blackjack(): allows a player to play Blackjack against the computer until he/she does not wish to continue playing.
+    > - Returns the total score resulting from all games played and does not accept any parameters.
+    > - Calls:  deal_players_hand(), deal_dealers_hand(), determine_winner()
+    > - After every game, the player's total game score is updated.
+    >   > - 3 points are awarded if the player wins
+    >   > - 0 points are awarded if the player loses and
+    >   > - 1 point is awarded if the player draws with the dealer.
+    > - This function keeps a cumulative total of the score returned from function
+    determine_winner().
+    > - Prompts if wants to play 'Play again [y|n]?'</li>
+    </ol>
+  </blockquote></li>
+  </ul>
+</blockquote>
+
+<strong>NOTE:  Do not use break, or continue statements (or any other technique to break out of loops) in your solution – doing so will result in a significant mark deduction.</strong>
+
+<h2>Part II Specification – High Scores Information</h2>
+
+Write a menu driven program  called  yourId_highscores.py  that will allow the user to enter commands and process these commands until the quit command is entered.   The program will keep a record of the players who achieve high scores while playing Blackjack.  The program will allow players to play Blackjack against the computer and will maintain information on high scoring players (using Lists).  Player information will be stored in a text file that will be read in when the program commences.  Once the initial high scores data has been read in from the file, the program should allow the user to interactively query  and manipulate the high scores information as well as play Blackjack against the computer (using the program you developed in Part I).
+
+<strong><font color=red>Note:  Although this assignment has two related parts, if you are not able to complete Part I of the assignment (or don’t intend to), you can still implement Part II.  Likewise, if you are not able to complete Part II of the assignment (or don’t intend to), you can still implement Part I.  Refer to stage two (2)  in this section (Part II) for information on how to handle an incomplete Part I. </font></strong>
+
+<strong>Input</strong>
+
+When your program begins, it will read in player information from a file called highscores.txt.  This is a text file that stores high score information relating to players.
+
+You may assume that all data is in the correct format.  The name (firstname surname) of the player and his/her high score is stored on one line and are separated by the space character as seen in Figure 1 below.
+
+After the program has stored the data (using two Lists, one List to store the player names and the other List to store the high scores), it will enter interactive mode as described in the following section.
+
+<p align="center">Tony Stark 10  
+Fox Mulder 8  
+Phil Dunphy 6  
+Buster Bluth 1  
+Figure 1: Player information file format (highscores.txt).</p>
+
+<h2>Practical Requirements (Part II)</h2>
+
+<p>It is recommended that you develop this  part of the  assignment in the suggested stages.  Each stage is worth a portion of the marks.</p>
+<p>It is expected that your solution will include the use of:</p>
+<blockquote>
+  <ul>
+  <li>Your solution in a file called yourId_highscores.py.</li>
+  <li>Appropriate and well constructed while and/or for loops without break statements to exit from loops</li>
+  <li>Appropriate if, if-else, if-elif-else statements (as necessary).</li>
+  <li>Appropriate constants, i.e. MAX_SCORES = 5</li>
+  <li>The following functions:
+
+  <blockquote>
+    <ol>
+    <li>read_file(filename, player_names, player_scores):
+    reads the contents of a file into player_name and player_scores lists
+
+    <blockquote>
+      <ul>
+      <li>filename, player_name and player_score lists are  passed as a parameters  and returns nothing</li>
+      <li>The player_names and player_scores lists should not exceed 5 elements.  You must use a loop in your solution.  You may use String and/or List methods in this function only.</li>
+      </ul>
+    </blockquote></li>
+    <li>write_to_file(filename, player_names, player_scores):
+    output the contents of the player_names and player_scores lists to a file in the same format as the input file.
+
+    <blockquote>
+      <ul>
+      <li>filename (of the output file), player_names and player_scores lists are passed as parameters and returns nothing</li>
+      <li>The file will need to be opened before and closed once all writing has been done. You must use a loop in your solution.</li>
+      </ul>
+    </blockquote></li>
+    <li>display_high_scores(player_names, player_scores): output the contents of the lists to the screen
+
+    <blockquote>
+      <ul>
+      <li>player_names and player_scores list passed as parameters and returns nothing</li>
+      <li>Output the contents of the lists to the screen in the format specified in the assignment specifications under the section - 'Screen Format'.</li>
+      <li>You must use a loop in your solution.</li>
+      </ul>
+    </blockquote></li>
+    <li>find_player(player_names, name): find the position of the player in the high scores
+
+    <blockquote>
+      <ul>
+      <li>player's name, player_names list are passed as parameters</li>
+      <li>Returns the position (index) of the player found in the player_names list</li>
+      <li>If more than one player exists with the same name, return the position of the player who has the highest score (i.e. first match found).</li>
+      <li>If the player is not found, the function returns -1.</li>
+      <li>You must use a loop in your solution.  You must not use list methods in your solution.</li>
+      </ul>
+    </blockquote></li>
+    <li>is_high_score(player_scores, new_score): determines if player is to be added to the high scores
+
+    <blockquote>
+      <ul>
+      <li>Takes a player's score, and player_scores list as parameters</li>
+      <li>Returns the insertion position is returned from this function (if the player is to be added)</li>
+      <li>If the player does not qualify in the high scores lists, the function returns -1.</li>
+      <li>You must use a loop in your solution.</li>
+      </ul>
+    </blockquote></li>
+    <li>add_player(player_names, player_scores, new_name, new_score, insert_position, num_players):
+    adds a player to the high scores lists at the insert position
+
+    <blockquote>
+      <ul>
+      <li>player_names and player_scores  lists, the player's name and score, the number of high scores (stored in the lists) and the position to insert (the player into the lists) are parameters </li>
+      <li>The function returns the number of high scores stored in the lists.</li>
+      <li>The high scores lists (player_names and player_scores) must be maintained in descending order of total score.</li>
+      <li>Where two players have the same total score, the new player being added should appear first.  (Hint: when inserting a player, simply shift all elements one position down the lists.</li>
+      <li>You must make sure you are not exceeding list bounds and that your lists do not contain more than five elements).</li>
+      <li>You must use a loop in your solution.  You must not use list methods in your solution.</li>
+      </ul>
+    </blockquote></li>
+    </ol>
+  </blockquote></li>
+  <li>Output that strictly adheres to the assignment specifications.  If you are not sure about these details, you should check with the 'Sample Output – Part II' provided at the end of this document.</li>
+  </ul>
+</blockquote>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://eedaixie.github.io/2017/12/15/python-COMP1039/" data-id="ck51up9ga00086gzw3e3sgnr4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/16/math-MAT423/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Math代写：MAT423
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/12/15/python-CSC1002/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python代写：CSC1002 – Handwritten Digit Recognition</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/12/19/python-CSCA48/">Python代写：CSCA48 Snakes And Ladders</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/16/c++-CS206/">C++代写：CS206 Email Handler</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/19/c-CSE320/">C语言代写：CSE320 SFISH Shell</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/11/java-SWEN20003/">Java代写：SWEN20003 Graphical Game Engine</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/05/c-COMP10002/">C代写：COMP10002 Indexed Document Retrieval</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 eedaixie<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

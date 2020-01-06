@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Python代写：CSC1002 – Handwritten Digit Recognition | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="使用KNN算法，识别手写数字。    OVERVIEW  In this assignment, you will apply Machine Learning skills.  You are asked to design and develop one of its popular classification algorithm called kNN (k-Nearest Neighbor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python代写：CSC1002 – Handwritten Digit Recognition">
+<meta property="og:url" content="http://eedaixie.github.io/2017/12/15/python-CSC1002/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="使用KNN算法，识别手写数字。    OVERVIEW  In this assignment, you will apply Machine Learning skills.  You are asked to design and develop one of its popular classification algorithm called kNN (k-Nearest Neighbor">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-12-16T02:19:00.000Z">
+<meta property="article:modified_time" content="2020-01-05T22:45:46.804Z">
+<meta property="article:author" content="eedaixie">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://eedaixie.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-python-CSC1002" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/15/python-CSC1002/" class="article-date">
+  <time datetime="2017-12-16T02:19:00.000Z" itemprop="datePublished">2017-12-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python代写：CSC1002 – Handwritten Digit Recognition
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4>使用KNN算法，识别手写数字。</h4>
+
+<hr />
+
+<h2>OVERVIEW</h2>
+
+<p>In this assignment, you will apply Machine Learning skills.  You are asked to design and develop one of its popular classification algorithm called kNN (k-Nearest Neighbors) to programmatically predict handwritten digits in its digitized format. kNN is super-vised based algorithm by majority vote of its neighbors. It is supervised in a sense that a sufficient large sample dataset of known target values is carefully selected. This sample dataset will be split into 2 groups. One group will be used to formula a kNN model to be used for prediction. It’s called Training. The other group is used to verify the accuracy of the established model, called Testing. The Training-Testing cycle might result in several iterations of tuning and adjustment until a satisfactory model is achieved with high accuracy of positive predictions, higher better. Once such a model has been implemented, it’s ready to make prediction. To make a prediction, simply feed an unknown value of same format to the program and then perform the required computation in accordance to the established kNN model.<br><a id="more"></a></p>
+<h2>SCOPE</h2>
+
+<p>Note: refer to the sample output for references.</p>
+<blockquote>
+  <ol>
+  <li>Construct 2 kNN models based on 2 files called digit-training.txt & digit-testing.txt for training & testing respectively (cross-validation is not required), files are text based. </li>
+  <li>Refer to the lab materials for more information on kNN implementation, file format and ideas.</li>
+  <li>Use ONLY vector-based function developed from previous lab class to determine nearest neighbors</li>
+  <li>Implement majority vote algorithms to do the best guess prediction</li>
+  <li>IN THE DESIGN DOC, FOR EACH kNN model:  explain (a) how the closest neighbors are chosen and (b) the rule(s) used in making the prediction</li>
+  <li>Based on each kNN model implementation:
+  > a. show training and testing info (see Output sections)
+  > b. show prediction outcome using file digit-predict.txt (see Output sections).</li>
+  <li>Note for output: Group each set of outputs (training, testing & prediction) in accordance to your kNN models implemented</li>
+  <li>Files to download from moodle: digit-training.txt, digit-testing.txt, digit-predict.txt & vector.py</li>
+  </ol>
+</blockquote>
+
+<p>YOU ARE ENCOURAGED TO BUILD A MORE EFFICIENT kNN MODEL AS SUGGESTED IN CLASS!!!</p>
+<h2>Skills</h2>
+
+<p>In this assignment, you will be trained on the use of the followings:</p>
+<blockquote>
+  <ul>
+  <li>Machine Learning life cycle – dataset, data mining, kNN construction, training & testing</li>
+  <li>Python objects & modules (file IO, string, string formatting, sorting, dictionary, list, list comprehensions)</li>
+  <li>Controls – if, while, for to control program flow</li>
+  <li>Variable Scope</li>
+  <li>Functions to breakdown the logic</li>
+  </ul>
+</blockquote>
+
+<h2>Tips && Hints</h2>
+
+<blockquote>
+  <ul>
+  <li>Use Dictionary to keep list of digit-vectors (during training) and to track accuracy rate (during testing)</li>
+  <li>Use Counter() and most_common() from module “collections” to return the closest neighbors  >  - Use zip + list comprehension for vector sum, subtract, sum, or, average, sum and so on</li>
+  <li>Use String Formatting for training and testing info</li>
+  <li>Use reduce() from module “functools” to combine multiple vectors into a single OR-vector or AND-vector</li>
+  </ul>
+</blockquote>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://eedaixie.github.io/2017/12/15/python-CSC1002/" data-id="ck51up9gs000d6gzw3vcz4a3n" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/15/python-COMP1039/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Python代写：COMP1039-Programming Assignment 2
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/12/15/vhdl-EE457/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">VHDL代写： EE457-FIFO Design and Application</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/12/19/python-CSCA48/">Python代写：CSCA48 Snakes And Ladders</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/16/c++-CS206/">C++代写：CS206 Email Handler</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/19/c-CSE320/">C语言代写：CSE320 SFISH Shell</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/11/java-SWEN20003/">Java代写：SWEN20003 Graphical Game Engine</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/05/c-COMP10002/">C代写：COMP10002 Indexed Document Retrieval</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 eedaixie<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

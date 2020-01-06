@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>C代写：COMP10002 Indexed Document Retrieval | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="索引文档检索与PageRank算法实现。&lt;&#x2F;p&gt; Learning Outcomes  In this project you will demonstrate your understanding of dynamic memory and linked data structures, and extend your skills in terms of program desig">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C代写：COMP10002 Indexed Document Retrieval">
+<meta property="og:url" content="http://eedaixie.github.io/2018/09/05/c-COMP10002/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="索引文档检索与PageRank算法实现。&lt;&#x2F;p&gt; Learning Outcomes  In this project you will demonstrate your understanding of dynamic memory and linked data structures, and extend your skills in terms of program desig">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-09-05T20:19:00.000Z">
+<meta property="article:modified_time" content="2020-01-06T00:23:29.003Z">
+<meta property="article:author" content="eedaixie">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://eedaixie.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-c-COMP10002" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/05/c-COMP10002/" class="article-date">
+  <time datetime="2018-09-05T20:19:00.000Z" itemprop="datePublished">2018-09-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C代写：COMP10002 Indexed Document Retrieval
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>索引文档检索与PageRank算法实现。<br><a id=more></a>&lt;/p&gt;</p>
+<h2 id=Learning-Outcomes><a href=#Learning-Outcomes class=headerlink title="Learning Outcomes"></a>Learning Outcomes</h2>
+
+<p>In this project you will demonstrate your understanding of dynamic memory and linked data structures, and extend your skills in terms of program design, testing, and debugging. You will also learn about inverted indexes, and the basic principles of web search algorithms.</p>
+<a id="more"></a>
+<h2 id=Indexed-Document-Retrieval><a href=#Indexed-Document-Retrieval class=headerlink title="Indexed Document Retrieval"></a>Indexed Document Retrieval</h2>
+
+<p>The idea of an inverted index was mentioned briefly in class. To build an index for some input text, the words are isolated, together with their document numbers (in our case, line numbers in the input file), and arranged so that, for every word, a list of the documents that contain that word is constructed. In terms of notation, if t is an indexed term, then f t is the number of documents in the collection that contain that term at least once; and for any given document d, the value f d,t is the number of times that t appears in d. For example, consider the text:</p>
+<pre><code>line one has one word twice
+line two has words once only
+line three follows lines one and two, but not four
+line four is like the other lines, not like line five
+line five has word one and word two and word three
+six is the littlest one
+</code></pre>
+
+<p>If each line of that input file is taken to be a “document”, then the first few lines of a simple document-level inverted index for it would be</p>
+<pre><code>and 2 3 1 5 2
+but 1 3 1
+five 2 4 1 5 1
+follows 1 3 1
+four 2 3 1 4 1
+has 3 1 1 2 1 5 1
+</code></pre>
+
+<p>where the first integer following each word is the <code>f(t)</code> value for that term t, with exactly that many <code>(d, f(d,t))</code> pairs after it all on the same input line. For example, term <code>t = “and”</code> appears in <code>f(t) = 2</code> documents, document <code>d = 3</code> (with <code>f(d,t) = 1</code>, that is, one occurrence), and in document <code>d = 5</code> (with <code>f(d,t) = 2</code> occurrences). The full index file for the original six lines is available on the LMS, together with larger examples. Make sure that you understand the structure, and what the values represent.</p>
+<h2 id=Stage-1-–-Reading-the-Index><a href=#Stage-1-–-Reading-the-Index class=headerlink title="Stage 1 – Reading the Index"></a>Stage 1 – Reading the Index</h2>
+
+<p>Write a program that reads an index file with this format, specified as the first (and only) argument on the command-line, and builds (using realloc() and malloc()) a data structure to store that index information. The only assumption you may make, purely for the purposes of reading the input strings, is that each term in the index will be at most 999 characters long. Apart from a single buffer of that size, all stored strings and lists of <code>(d, f(d,t))</code> pairs should be held in dynamic arrays of the correct length for the data they contain (or within a factor of two of that minimum length). As evidence of the operation of this stage of your program, it should report the number of terms in the index that was read, the total number of <code>(d, f(d,t))</code> pairs in the index, and up to ten of the pairs associated with the first two and the last two terms in the index, using exactly the output format that is shown here and in the LMS examples. Note that the terms are labeled from 1:</p>
+<pre><code>mac: ./ass2-soln test0-ind.txt
+Stage 1 Output
+index has 23 terms and 43 (d,fdt) pairs
+term 1 is "and":
+    3,1; 5,2
+term 2 is "but":
+    3,1
+term 22 is "word":
+    1,1; 5,3
+term 23 is "words":
+    2,1
+</code></pre>
+
+<p>You may assume throughout that all input files you will be provided with will be “correct”, according to the description given above – there won’t be any tricksy-wicksy deviations. That is, all strings will be lower-case alpha only; all elements will be separated by a single space; all lines will have the correct number of values; all lines (including the last one) will be ended by a single (DOS-style) CR-LF combination (see the discussion of this in the Assignment 1 FAQ page); etc. Note that the terms are provided in the index file in strict dictionary order, and that the d values in the set of pairs associated with each term are also are strictly increasing; you will need to make these two facts in Stage 2 and Stage 3. Your Stage 1 program must open and read from a named file (and not from stdin yet, see Stage 2 for that input) so you will need to be familiar with Chapter 11 of the textbook. Output should be written to stdout (but you may also write error messages to stderr if you wish).</p>
+<h2 id=Stage-2-–-Queries-and-Term-Lookup><a href=#Stage-2-–-Queries-and-Term-Lookup class=headerlink title="Stage 2 – Queries and Term Lookup"></a>Stage 2 – Queries and Term Lookup</h2>
+
+<p>Extend your program so that it reads “queries” from stdin and looks up their corresponding term numbers in the index. Terms that do not appear in the index should be noted accordingly. For example (not showing the Stage 1 output again):</p>
+<pre><code>mac: ./ass2-soln test0-ind.txt
+four and five
+Stage 2 Output
+    "four" is term 5
+    "and" is term 1
+    "five" is term 3
+line seven
+Stage 2 Output
+    "line" is term 9
+    "seven" is not indexed
+</code></pre>
+
+<p>The eventual expectation in this stage is that you will use binary search to do this lookup; but it might be prudent to make use of linear search in the first instance, while you are debugging this stage and working on Stage 3, and then switch to binary search when you are sure of yourself, and ready to extend again. You may assume that each input line will contain at most 999 characters, and at most 20 different query terms. Lines should be processed interactively, so that the output for each line is generated before the next line is typed, with query terms limited to alphabetic characters, and case-folded to lowercase before the lookup is undertaken, to match the index. You do not need to retain each query line once it has been processed by Stage 2 and then Stage 3.</p>
+<h2 id=Stage-3-–-Ranked-Querying><a href=#Stage-3-–-Ranked-Querying class=headerlink title="Stage 3 – Ranked Querying"></a>Stage 3 – Ranked Querying</h2>
+
+<p>Ok, now for the fun part. Suppose that the collection has <code>N</code> documents, and suppose that (as before) term <code>t</code> appears in <code>f(t)</code> of them, and appears in document <code>d</code> a total of <code>f(d,t)</code> times. To determine the documents <code>d(here, lines)</code> that are the “strongest” matches for each query <code>q</code>, the following calculation is carried out on a per-document basis.</p>
+<p>The average document length over the <code>N</code> documents (computed as the arithmetic mean), and <code>k = 1.2</code> and <code>b = 0.75</code> are constants. Broadly speaking, there are three key relationships being balanced in this equation: rare words with low <code>f(t)</code> values are regarded as being more important than common words; words that appear multiple times in any given document have more weight than words that only appear a few times; and long documents are discounted relative to shorter ones. This computation is known as the “BM25” similarity mechanism. A wide range of other such scoring mechanisms have been proposed and used in web search systems. The ones actually used by Google and similar are, of course, closely-guarded commercial secrets, but still embed these same three principles. For web documents, commercial search providers also make use of features such as page title text; information from relative font-sizes being used; the anchor text that points to each page; language cues; the link relationships between pages; query click-through rates from other users; and so on.</p>
+<p>Add further functionality to your program so that as each query is read from stdin, it is processed against the index, and the top-3 matching documents (by score, with ties on score resolved according to increasing document number) identified and reported. For example (with the interleaved Stage 2 outputs suppressed, see the LMS for full examples of the output required):</p>
+<pre><code>mac: ./ass2-soln test0-ind.txt
+four and five
+Stage 3 Output
+    document   5: score 3.619
+    document   3: score 3.115
+    document   4: score 2.978
+line seven
+Stage 3 Output
+    document   4: score 0.474
+    document   1: score 0.425
+    document   2: score 0.425
+</code></pre>
+
+<p>For this process to be efficient, you need to combine a number of different sources of information, bringing components in as they are required. The document lengths |d| should be stored as part of your index data structure, and can be computed once the full index has been read. A value for <code>N</code> can similarly be determined from the input data and stored as a component of the index structure you build. But that still leaves the task of processing the term lists to generate document scores, and determining the top few (where “few” is three in this project, but is 10 for Google and Bing, for example) in an appropriate manner. Be sure to start simple, and check your computations at every step as you build towards the required output.</p>
+<p>As an overall outline of the process to be implemented, to compute the required score(d, q) values you should: (a) create and set to zero an array of <code>N</code> document score accumulators; (b) iterate over the index entries for the (indexed) terms that appear in the query, and for each such term, iterate over its <code>(d, f(d,t))</code> pairs, computing contributions to document scores one term at a time and adding them to the corresponding accumulator; and then (c) partially sort the array of accumulators (including their corresponding document numbers) to bring the biggest ones to the front. Note you don’t have to fully sort the score array in order to generate the required output (that is, there is an algorithmic efficiency question here for you to consider).</p>
+<p>My program to implement all three stages is a little under 500 lines long, including detailed comments and debugging output, about 100 lines longer than the solution for Assignment 1. Start early! If you want more of a challenge, try writing (but please don’t submit) the indexing program that generated the index files. And, of course, a real system would generate a query-biased caption, or snippet, for each answer document (rather than just the document number), you might like to think about how that process gets done.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://eedaixie.github.io/2018/09/05/c-COMP10002/" data-id="ck51up9g500046gzwd5v92dme" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/09/11/java-SWEN20003/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Java代写：SWEN20003 Graphical Game Engine
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/04/c++-CS5201/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">C++代写：CS5201 Quaternion</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/12/19/python-CSCA48/">Python代写：CSCA48 Snakes And Ladders</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/16/c++-CS206/">C++代写：CS206 Email Handler</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/19/c-CSE320/">C语言代写：CSE320 SFISH Shell</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/11/java-SWEN20003/">Java代写：SWEN20003 Graphical Game Engine</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/05/c-COMP10002/">C代写：COMP10002 Indexed Document Retrieval</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 eedaixie<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

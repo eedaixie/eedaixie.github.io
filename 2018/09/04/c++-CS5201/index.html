@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>C++代写：CS5201 Quaternion | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="用OOP的概念实现Quaternion类，重载各类操作符以满足Quaternion的各类算术运算。&lt;&#x2F;p&gt; The Concept  One of our goals this semester is to attain as much abstraction as possible in our data representation. To that end, we are fir">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++代写：CS5201 Quaternion">
+<meta property="og:url" content="http://eedaixie.github.io/2018/09/04/c++-CS5201/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="用OOP的概念实现Quaternion类，重载各类操作符以满足Quaternion的各类算术运算。&lt;&#x2F;p&gt; The Concept  One of our goals this semester is to attain as much abstraction as possible in our data representation. To that end, we are fir">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-09-04T18:19:00.000Z">
+<meta property="article:modified_time" content="2020-01-06T00:22:09.914Z">
+<meta property="article:author" content="eedaixie">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://eedaixie.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-c++-CS5201" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/04/c++-CS5201/" class="article-date">
+  <time datetime="2018-09-04T18:19:00.000Z" itemprop="datePublished">2018-09-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C++代写：CS5201 Quaternion
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>用OOP的概念实现Quaternion类，重载各类操作符以满足Quaternion的各类算术运算。<br><a id=more></a>&lt;/p&gt;</p>
+<h2 id=The-Concept><a href=#The-Concept class=headerlink title="The Concept"></a>The Concept</h2>
+
+<p>One of our goals this semester is to attain as much abstraction as possible in our data representation. To that end, we are first going to consider the concept of a “wrapper” for a basic? numeric type. The aim is to hide many of the implementation details from the user of the type. A programmer doesn’t need (or want) to know exactly what is happening when two integers or floats or complex numbers are added, multiplied, or disemboweled. They simply want the results of such actions. This assignment will have you “wrap” quaternions:</p>
+<a id="more"></a>
+<pre><code>h = a + bi + cj + dk
+</code></pre>
+
+<p>Now, you may be wondering what in the world is a quaternion. You can learn much (enough) about them by using one of the links on this webpage. It is not this one</p>
+<h2 id=Requirement><a href=#Requirement class=headerlink title=Requirement></a>Requirement</h2>
+
+<p>Your abstraction will be implemented with a class, of course. And, of course, your implementation should be transparent. This means that the functionality you build into your class should reflect the expected behavior of your type and that of the C++ primitives (int, float, etc.). So, in addition to the usual functions of a well defined and physiologically appealing class, you will need to overload operators so that operations such as</p>
+<pre><code>h1 += h2
+</code></pre>
+
+<p>make sense and indeed work. In addition, you want your quaternions to be able to be based in numeric types of varying kinds. That is, you want the ability to have the a’s, b’s, c’s and d’s be int or float or double or whatever. So, you will template the class.</p>
+<p>Once you have your quaternion class, you will need to demonstrate how well it works. To do this, we want you to concurrently learn a little mathematics and to demonstrate your programming prowess by coding and applying a norm. Ok, so what is a norm? Loosely speaking, a norm is a way of measuring on a set of objects. It is a real-valued function of a set of things. The set of things you will be concerned with here is a set of quaternions. The norm you will implement is the L1 - norm (pr. “el 1 norm”) and is defined to be the sum of the “magnitudes” of the elements in that set. For a quaternion, we will define its magnitude as the square root of the sum of the squares of the component coefficients (a, b, c, d in the above example) of that quaternion. Thus, you must “pass” to your implementation of the norm a set of objects on which to operate. What, then, is the relationship between objects and operations here? This is your problem. You need to think carefully about your design. Use your UML. I passed out in class some sample code and UML to help you get your head around this idea. So you need to think about what class depends on what other class.</p>
+<p>It is possible to implement your norm operation either as a function or as a class. However, we will require that you implement it as a class for this assignment. The concept of representing an operation as a class may be foreign to you. But the method has definite advantages. It boils down to this: define a class with no data (in this case) and one (public) overloaded operator, the function evaluation operator. Using the class object then appears to be the use of a function. I will speak about this in class.</p>
+<p>We want you to use the STL vector class to contain your set of objects (quaternions). Then you will be able to do this and have a vector of quaternion values whose components are ints. Note: be careful to put that extra space between the two &gt; symbols if you are not compiling with c++11.</p>
+<h2 id=Program-Specifications><a href=#Program-Specifications class=headerlink title="Program Specifications"></a>Program Specifications</h2>
+
+<p>You will include in your submission source code for your templated quaternion class. You will include a default constructor (initializing to 0 + 0i + 0j + 0k) and another constructor taking 4 args to initialize the 4 parts of a quaternion. You will also have a copy constructor and a destructor. You will overload the following operators: (h is the name we’ll use for an arbitrary quaternion)</p>
+<pre><code>+ =, +, -, - =, = =, ! = to do the obvious
+unary - so that - h is the negative of h
+* for multiplying a quaternion by a quaternion
+/ for division of quaternions h1 / h2 = h1 * (h2)-1
+= for assignment
+[ ] to return the nth coefficient of the quaternion, with 0 returning the real part, 1 the i part, 2 the j part, and 3 the k part
+stream operators
+! to return its conjugate
+~ to return the magnitude
+</code></pre>
+
+<p>You will also include a function called mag that returns the magnitude.</p>
+<p>You will submit your implementation of the L1 - norm and a driver to test your constructs. The driver will read data values from a file. Here is a data set you may use for testing. It is in the format you are to assume:</p>
+<pre><code>10
+1 2 3 4
+0 -1 -2 -3
+4 5 6 7
+-2 0 0 3 
+1 -1 -1 1
+8 8 8 8
+0 0 0 0
+.1 .2 .1 .1
+2 0 0 0
+0 1 0 1
+</code></pre>
+
+<p>(Note: the first value in this file is the number of quaternions that are to follow. Each quaternion is a set of ordered quadruplets. White space will delimit each value in the file. Have your program read data according to this file format. Your program may be tested on other data sets using this format.) Apply the L1 - norm to the entire set of quaternions and output the result. Also, output the first two quaternions and then output. Include exception handling for division by zero, bad subscripting, and anything else clearly foolish. You will also submit during class a UML model of your code (hand-drawn if you like). Also submit during class the gradesheet. Be sure also to provide a makefile.</p>
+<p>Submit your driver with classes templated on floats. Name your executable “driver”.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://eedaixie.github.io/2018/09/04/c++-CS5201/" data-id="ck51up9g200026gzw71x51ga4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/09/05/c-COMP10002/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          C代写：COMP10002 Indexed Document Retrieval
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/03/python-CS110/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python代写：CS110 Higher Order Functions</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/12/19/python-CSCA48/">Python代写：CSCA48 Snakes And Ladders</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/16/c++-CS206/">C++代写：CS206 Email Handler</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/19/c-CSE320/">C语言代写：CSE320 SFISH Shell</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/11/java-SWEN20003/">Java代写：SWEN20003 Graphical Game Engine</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/05/c-COMP10002/">C代写：COMP10002 Indexed Document Retrieval</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 eedaixie<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

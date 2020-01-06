@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Java代写：SWEN20003 Graphical Game Engine | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="基于Slick库写JAVA小游戏。&lt;&#x2F;p&gt; Overview  In this project, you will create a basic graphical game engine, in the Java programming language. You will implement the graphical user interface with the Slick l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java代写：SWEN20003 Graphical Game Engine">
+<meta property="og:url" content="http://eedaixie.github.io/2018/09/11/java-SWEN20003/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="基于Slick库写JAVA小游戏。&lt;&#x2F;p&gt; Overview  In this project, you will create a basic graphical game engine, in the Java programming language. You will implement the graphical user interface with the Slick l">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-09-11T22:19:00.000Z">
+<meta property="article:modified_time" content="2020-01-06T00:24:50.834Z">
+<meta property="article:author" content="eedaixie">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://eedaixie.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-java-SWEN20003" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/11/java-SWEN20003/" class="article-date">
+  <time datetime="2018-09-11T22:19:00.000Z" itemprop="datePublished">2018-09-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java代写：SWEN20003 Graphical Game Engine
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>基于Slick库写JAVA小游戏。<br><a id=more></a>&lt;/p&gt;</p>
+<h2 id=Overview><a href=#Overview class=headerlink title=Overview></a>Overview</h2>
+
+<p>In this project, you will create a basic graphical game engine, in the Java programming language. You will implement the graphical user interface with the Slick library, as introduced in Workshop 4.<br>This is an individual project. You may discuss it with other students, but all of the implementation must be your own work. You may use any platform and tools you wish to develop the game, but we recommend using the Eclipse IDE for Java development as this is what we will support in class.<br><a id="more"></a>You will be required to briefly demonstrate the game engine in a workshop. In Project 2, you will continue working on the game engine, and build a working game.<br>The purpose of this project is to:</p>
+<ul><li>Give you experience working with an object-oriented programming language (Java);</li><li>Introduce simple game programming concepts (2D graphics, input, simple calculations); and</li><li>Give you experience working with a simple game API (Slick).</li></ul>
+
+<p>Figure 1 shows a screenshot from the game after completing Project 1. The game consists of navigating a character through a maze of trees, mountains and water. In this image, you can see the player in a small village, with houses.<br>Note that this is a “tile-based” game; the map is arranged in a grid of squares (note the blocky shapes of the stone and arrangement of the trees). This makes the game easier to program, and was a very common technique in games of the ‘90s.<br>The game has a single character, called the “player”. The user controls the game with the arrow keys on the keyboard, moving the player character around the map. The player can walk on grass, stone, wood, etc., but cannot walk on trees, houses, water, etc.<br>There is no “goal” of the game, and no “enemies”, at this stage - merely exploration. These will be introduced in Project 2, in which you will be required to program the complete game.<br>The rest of this section details precisely how the game works. You must implement all of the features described here, unless they are marked “optional”.</p>
+<h2 id=The-game-map><a href=#The-game-map class=headerlink title="The game map"></a>The game map</h2>
+
+<p>In this game, the “world” is a two-dimensional grid of tiles. The player is able to move freely around the world to explore the entire world (but of course, the player cannot walk on trees, mountains, water, and other types of terrain).<br>The game map is a large 2D array (96 × 96) of tiles, representing the world the player lives in. Each tile has a particular terrain type, such as grass, stone, mountains, water and fire. Aside from its graphical appearance, there is only one physical difference between terrain types: some tiles allow movement (such as grass and wood) while others block movement (such as mountains, water, fire and trees). Each tile is 72 × 72 pixels in size.<br>The supplied map file, map.tmx, contains the tile layout information for the whole game. Slick comes with a handy class called TiledMap which can read .tmx files (see “implementation tips” for instructions).</p>
+<h2 id=The-player><a href=#The-player class=headerlink title="The player"></a>The player</h2>
+
+<p>The only character in the “game” at this stage is the player. The player controls a small character with the keyboard, and is able to move him or her around the map. The player’s position in the world is stored as an (x, y) coordinate in pixels 3 . This means that the player can stand at any point on the map, rather than being constrained to the tiles of the map grid. All measurements are given in pixels.<br>The player should start at location (756, 684). This should place him/her in the middle of the village, as shown in Figure 1.<br>Internally, the player has no “size”; it is just a single point. When displaying the player, the image should be centred around the player’s position.</p>
+<h2 id=Gameplay><a href=#Gameplay class=headerlink title=Gameplay></a>Gameplay</h2>
+
+<p>The game takes place in frames. Much like a movie, many frames occur per second, so the animation is smooth. Each frame:</p>
+<ol><li>If certain keyboard keys are being pressed, the player moves by a small amount in that direction and the players position in the world is updated.</li><li>The “camera” is updated so that it is centred around the player’s position. This is important! The camera should be reliant on knowing the players position, not the other way around.</li><li>The entire screen is “rendered”, so the display on-screen reflects the new state of the world.</li></ol>
+
+<h2 id=Display><a href=#Display class=headerlink title=Display></a>Display</h2>
+
+<p>This is a graphical game, so you will use the Slick library to draw the graphics onto the screen. We have supplied all of the graphics you will need, as PNG files (see “the supplied package”).<br>The game’s main window is 800 × 600 pixels. The game map is much bigger (6912 × 6912 pixels), so you can’t see all of it at once. Instead, the game should only render a portion of the map at a time - such that the “camera” is centred around the player. This means that as the player walks around the world, the camera should follow. You will find that you will need to render 13 tiles wide and 10 tiles high, to fill up the screen.<br>You should not render the entire map, or the game may run very slowly (and we will deduct marks).<br>Instead, you should calculate which 13 × 10 tiles are required to fill up the screen, and render those.<br>Optional feature: In the supplied image, player.png, the character is facing to the right. Make it so if the player moves left, (s)he faces left instead, and if the player moves right, (s)he faces right again.</p>
+<h2 id=Controls><a href=#Controls class=headerlink title=Controls></a>Controls</h2>
+
+<p>The game is controlled entirely using the arrow keys on the keyboard. The left, right, up and down keys move the player. Each frame, the player moves by a tiny amount in the direction of the keys being pressed, if any. It is possible to move diagonally by holding down two keys at a time (for example, move north-east by holding the up and right keys).<br>The player moves at a rate of a quarter of a pixel per millisecond, in each direction. For example, if the player is moving east, then every millisecond, (s)he moves 0.25 pixels to the right. If the player is moving north-east, then every millisecond, (s)he moves 0.25 pixels up and 0.25 pixels right in the world. (Note that this enables the player to move slightly faster diagonally).<br>Optional feature: Allow click to move style controls such that the player can be controlled by clicking on a point in the map with the mouse and the player will move towards it. This feature will require pathfinding to work, and should be considered only if you have an abundance of time and want a challenge.</p>
+<h2 id=Terrain-blocking><a href=#Terrain-blocking class=headerlink title="Terrain blocking"></a>Terrain blocking</h2>
+
+<p>Some types of terrain (such as water) should stop the player from moving, while other types should allow the player to walk. The map file itself stores whether or not each tile should block the player’s movement 4 . See “implementation tips” for details on determining whether a tile should block.<br>If the player attempts to walk on terrain which “blocks”, the player should remain in his/her current location (this will make walls feel “sticky”).<br>Optional feature: Allow the player to “slide” along walls when moving diagonally. For example, if the player is trying to move south-east, and there are mountains to the east, move the player south, rather than not moving at all. (This may feel more natural than the “sticky” walls approach suggested above.)</p>
+<h2 id=Your-code><a href=#Your-code class=headerlink title="Your code"></a>Your code</h2>
+
+<p>Your code should consist of at least these four classes:</p>
+<ul><li>RPG - The outer layer of the game. Inherits from Slick’s BasicGame class. Starts up the game, handles the update and render methods, and passes them along to World.</li><li>World - Represents the entire game world, including the map.</li><li>Player - Represents the player character.</li><li>Camera - Represents the viewport, should follow the player.</li></ul>
+
+<p>You will be supplied with complete code for RPG, and partial code for World. You may modify this code however you wish; it is provided merely as a guide. Your implementation of the World, Player and Camera classes should follow proper object-oriented design practices, such as encapsulation.<br>You may find that there are better ways to design the classes than just restricting yourself to these three classes and we are open to this (and in-fact encourage creative design thinking), just make sure you discuss these with your tutor before going ahead.</p>
+<h2 id=Implementation-tips><a href=#Implementation-tips class=headerlink title="Implementation tips"></a>Implementation tips</h2>
+
+<p>This section presents some tips on implementing the game engine described above. You may ignore the advice here, as long as your game exhibits the required features.</p>
+<h3 id=The-game-map-1><a href=#The-game-map-1 class=headerlink title="The game map"></a>The game map</h3>
+
+<p>You should use the TiledMap class to read the supplied map file, map.tmx. The following constructor of TiledMap is appropriate:<br><figure class="highlight java"><table><tr><td class=gutter><pre><span class=line>1</span><br></pre><td class=code><pre><span class=line>TiledMap(String ref, String tileSetsLocation)</span><br></pre></table></figure></p>
+<p>The first argument is the location of the map.tmx file; the second is the location of the assets directory in which the tileset information used by the map.tmx file is held (when Slick opens the map.tmx file, it will look in this directory to load the accompanying tileset information - tileset.tsx and tiles.png. These files contain information about the different tiles). There are more hints about using TiledMap later in this section.</p>
+<h3 id=Display-1><a href=#Display-1 class=headerlink title=Display></a>Display</h3>
+
+<p>The TiledMap.render method (in Slick) can be used to draw a portion of the map to the screen. You should use the version with six arguments:<br><figure class="highlight java"></p>
+<table><tr><td class=gutter><pre><span class=line>1</span><br></pre><td class=code><pre><span class=line><span class=function><span class=keyword>void</span> <span class=title>render</span><span class=params>(<span class=keyword>int</span> x, <span class=keyword>int</span> y, <span class=keyword>int</span> sx, <span class=keyword>int</span> sy, <span class=keyword>int</span> width, <span class=keyword>int</span> height)</span></span></span><br></pre></table>
+
+<p>&lt;/figure&gt;</p>
+<p>Hint: You can pass negative numbers for the x and y parameters to TiledMap.render, so the top-left tile is rendered a little above and to-the-left-of the top-left corner of the screen.<br>You will also need to display the player. You can use the Image.draw method (in Slick) to render an image onto the background at a particular location. You should use the version with two arguments:<br><figure class="highlight java"></p>
+<table><tr><td class=gutter><pre><span class=line>1</span><br></pre><td class=code><pre><span class=line><span class=function><span class=keyword>void</span> <span class=title>draw</span><span class=params>(<span class=keyword>float</span> x, <span class=keyword>float</span> y)</span></span></span><br></pre></table>
+
+<p>&lt;/figure&gt;</p>
+<p>If you choose to implement the optional “facing left” feature, you can use the Image.getFlippedCopy method to create a version of the player’s image facing left.</p>
+<h3 id=Controls-1><a href=#Controls-1 class=headerlink title=Controls></a>Controls</h3>
+
+<p>The delta argument passed to the RPG.update method by Slick indicates the number of milliseconds passed since the last frame. You should use this to determine the number of pixels to move the player each frame. The distance moved should depend on this delta value, so that your game can be independent of the frame rate. Otherwise your game will move slower on slow computers, but faster on faster computers (and you will loose marks for this).</p>
+<h3 id=Terrain-blocking-1><a href=#Terrain-blocking-1 class=headerlink title="Terrain blocking"></a>Terrain blocking</h3>
+
+<p>Finding out whether any given tile should block the player is a two-step process:</p>
+<ol><li>First, call the TiledMap.getTileId method. This gives an integer representing the terrain type (eg. grass = 10, tree = 7, house = 12).</li><li>Then, call the TiledMap.getTileProperty method, looking up the property name “block” for the given tile ID, with the default value of “0”. A result of “1” means block the player; “0” means allow the player to walk freely.<br>The above instructions use the following methods of TiledMap:</li></ol>
+
+<figure class="highlight java">
+
+<table><tr><td class=gutter><pre><span class=line>1</span><br><span class=line>2</span><br></pre><td class=code><pre><span class=line><span class=function><span class=keyword>int</span> <span class=title>getTileId</span><span class=params>(<span class=keyword>int</span> x, <span class=keyword>int</span> y, <span class=keyword>int</span> layerIndex)</span></span><br><span class=line>String <span class=title>getTileProperty</span><span class=params>(<span class=keyword>int</span> tileID, String propertyName, String def)</span></span></span><br></pre></table>
+
+</figure>
+
+<p>Detailed documentation for the classes used in this project, such as TiledMap and Image can be found at <a href=http://slick.ninjacave.com target=_blank rel=external>http://slick.ninjacave.com</a> and may be useful when trying to figure out how these classes and their methods work.</p>
+<h2 id=Implementation-checklist><a href=#Implementation-checklist class=headerlink title="Implementation checklist"></a>Implementation checklist</h2>
+
+<p>This project may seem daunting. As there are a lot of things you need to implement, we have provided a checklist, ordered roughly in the order we think you should implement them in:</p>
+<ol><li>Loading the map.</li><li>Defining the Camera class</li><li>Rendering the map (center the Camera around position (756, 684), for now).</li><li>Defining the Player class.</li><li>Loading the player graphics.</li><li>Rendering the player.</li><li>Movement of the player.</li><li>Centering the Camera around the player.</li><li>Terrain blocking.</li></ol>
+
+<h2 id=Technical-requirements><a href=#Technical-requirements class=headerlink title="Technical requirements"></a>Technical requirements</h2>
+
+<ul><li>The program must be written in the Java programming language.</li><li>The program must not depend upon any libraries other than the Java standard library, and the Slick graphics library we have provided.</li><li>The program must compile and run in Eclipse on the Windows machines in the labs. (This is a practical requirement, as you will be giving a demo in this room; you may develop the program with any tools you wish, as long as you make sure it runs in this environment.)</li></ul>
+
+<h2 id=Good-Coding-Style><a href=#Good-Coding-Style class=headerlink title="Good Coding Style"></a>Good Coding Style</h2>
+
+<p>Good coding style is often a difficult objective to decide. More often than not, what is considered good style is dependent on the company you work for, the aims of the project and the budget involved. For the purposes of this project we are looking for the following:</p>
+<ul><li>You should not go back and comment your code after the fact. You should be commenting as you go.</li><li>You should be taking care to ensure proper, secure use of visibility modifiers. Unless you have a very good reason for it, all instance variables should be private. You should consider proper information hiding practice at all times.</li><li>Any constant should be defined as a static final variable, you should not leave any constants in the code base, it makes it difficult to change paths when necessary and contributes to hard to manage code.</li><li>Think about the modifiability of your code, remember that the second portion of the project has not been released yet, but it should be clear that there will be other characters and you should consider how you can generalize this functionality to make things easier for yourself in the future.</li><li>Think about code delegation, you should ensure that each class is responsible for its own functionality and that each class encloses its own functionality fully. For example, all player update should be contained in one update() method with the appropriate arguments.</li></ul>
+
+<p>&lt;/div&gt;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://eedaixie.github.io/2018/09/11/java-SWEN20003/" data-id="ck51up9g900076gzwc2jg4j0v" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/09/19/c-CSE320/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          C语言代写：CSE320 SFISH Shell
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/05/c-COMP10002/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">C代写：COMP10002 Indexed Document Retrieval</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/12/19/python-CSCA48/">Python代写：CSCA48 Snakes And Ladders</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/16/c++-CS206/">C++代写：CS206 Email Handler</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/19/c-CSE320/">C语言代写：CSE320 SFISH Shell</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/11/java-SWEN20003/">Java代写：SWEN20003 Graphical Game Engine</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/05/c-COMP10002/">C代写：COMP10002 Indexed Document Retrieval</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 eedaixie<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>C语言代写：ENGR30003 Numerical Programming for Engineers | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="C语言编写求根，求解线性方程，线性回归，二阶拉格朗日插值，偏微分方程等算法  1 Learning Outcomes  mathjax: true In this assignment you will demonstrate your understanding of solving engineering problems using numerical computations and as">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言代写：ENGR30003 Numerical Programming for Engineers">
+<meta property="og:url" content="http://eedaixie.github.io/2017/12/17/c-ENGR30003/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="C语言编写求根，求解线性方程，线性回归，二阶拉格朗日插值，偏微分方程等算法  1 Learning Outcomes  mathjax: true In this assignment you will demonstrate your understanding of solving engineering problems using numerical computations and as">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-12-18T00:25:23.000Z">
+<meta property="article:modified_time" content="2020-01-06T02:12:03.083Z">
+<meta property="article:author" content="eedaixie">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://eedaixie.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-c-ENGR30003" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/17/c-ENGR30003/" class="article-date">
+  <time datetime="2017-12-18T00:25:23.000Z" itemprop="datePublished">2017-12-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C语言代写：ENGR30003 Numerical Programming for Engineers
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4>C语言编写求根，求解线性方程，线性回归，二阶拉格朗日插值，偏微分方程等算法</h4>
+
+<h2>1 Learning Outcomes</h2>
+
+<p>mathjax: true</p>
+<p>In this assignment you will demonstrate your understanding of solving engineering problems using numerical computations and assessing particular algorithms. The objectives of this assignment are to program algorithms for root-finding, solving systems of linear algebraic equations, performing least-squares approximations and interpolations, regressing solutions and solving a transport equation using ﬁnite-difference discretization schemes.</p>
+<a id="more"></a>
+<h2>2 Rootfinding</h2>
+
+<p>Imagine a wedge-shaped object flying through air at supersonic speeds (see Fig.1). In compressible flow theory (covered in MCEN90008 Fluid Dynamics), it is known that an oblique shock wave forms at the front tip of this object under certain conditions. The equation relating the wedge half-angle (\theta) to the shock oblique angle (\beta), and the Mach number, (M) is given by <script type="math/tex">\begin{equation} \tan(\theta)=2\cot(\beta)\dfrac {M^2\sin^2(\beta)-1}{M^2(\gamma+\cos(2\beta ))+2} \label{eq:1} \end{equation}</script><br>where (\gamma=1.4) is the ratio of speciﬁc heats. For a given (M), as you keep increasing (\theta), there is a critical angle, (\theta_{max}) where the shock becomes detached. We can also recast \eqref{eq:1} into the following form</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+f(\beta)=2\cot(\beta)\dfrac{M^2\sin^2{\beta}-1}{M^2(\gamma+\cos(2\beta))+2}-\tan(\theta)
+\label{eq:2}
+\end{equation}</script><p>Your tasks are the following:</p>
+<h3>2.1 Analytical solution for \(\theta=0^{\circ}\)</h3>
+
+<p>For (\theta=0), i.e. the object would be a ﬂat plate, show that two possible solutions for (\beta) are</p>
+<p>\begin{equation}<br>\beta_L=\arcsin{\dfrac{1}{M}}, \beta_U=90^{\circ}<br>\label{eq:3}<br>\end{equation}</p>
+<p>(\beta_U) and (\beta_L) are usually called the strong shock and weak shock solutions, respectively. Even though we can mathematically obtain two possible solutions, in reality, or physically, only the weak shock solution occurs. Note also that in order for the solution to be physically realisable, (\theta \lt \beta \lt 90^{\circ}).</p>
+<h3>2.2 Graphical solution</h3>
+
+<p>Plot (f(\beta)) vs (\beta) for</p>
+<ol>
+<li>\(M=1.5\) and \(\theta=5^{\circ}\), \(10^{\circ}\) and \(15^{\circ}\)</li>
+<li>\(M=5.0\) and \(\theta=20^{\circ}\), \(30^{\circ}\) and \(45^{\circ}\)</li>
+</ol>
+
+<p>Indicate how (\beta_U) and (\beta_L) change with (\theta) and (M) Can you identify from your plots the approximate value of (\theta_{max})?</p>
+<h3>2.3 C program to solve shock-wave equation</h3>
+
+<p>Your task is to write a C code that solves \eqref{eq:2} using the Newton–Raphson method to find the root of (f(\beta)), regarding (\theta) and (M) as parameters and solving for (\beta).</p>
+<ol>
+<li>Write your C program such that it uses the Newton–Raphson method to solve \(f(\beta)=0\). What values of \(\beta_L\) and \(\beta_U\) do you think might be appropriate to use as an initial guess? For \(M=5.0\) and \(theta=20^{\circ}\), you shoud find that
+$$ \beta_L=29.80092..^{\circ},  \text{ and }   \beta_U=84.55625...^{\circ}$$</p></li>
+<li><p>Extend your C program to find \(\beta_U\) and \(\beta_L\) values for \(M=5.0\) and \(\theta \lt \theta \lt \theta_{max}\). Remember that for \(\theta=0\),\(beta_L=\arcsin(\frac{1}{M})\) and \(\beta_U=90^{\circ}\). Plot values of \(\theta\) on the horizontal axis and corresponding values of \(\beta\) on the vertical axis. Your solution to this part of the assignment should look like Fig.2. Note that you can plot your results obtained from your C code with your program of choice, e.g. Matlab, Excel, etc.</p></li>
+<li><p>Use Use your computer program to solve \(f(\beta)=0\) for \(M=1.5, 3.0, 4.0, 5.0, 7.0, 8.0\). Plot \(\beta\) vs \(\theta\) for all the \(M\)'s. This plot is called the \(\theta-\beta-M\) diagram and you will find it very useful if you decide to do MCEN90008 Fluid Dynamics in the future.</p></li>
+</ol>
+
+<h2>3 Linear Algebraic Systems</h2>
+
+<p><p>Consider the following tri-diagonal system:</p>
+<p>\begin{equation}<br>\begin{bmatrix}<br>    a_1 &amp; b_1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 \\<br>    c_2 &amp; a_2 &amp; b_2 &amp; 0 &amp; \cdots &amp; 0 \\<br>    0 &amp; c_3 &amp; a_3 &amp; b_3 &amp; \cdots &amp; \vdots \\<br>    \vdots &amp; \vdots &amp; \ddots  &amp; \ddots  &amp; \ddots  &amp; \vdots \\<br>    0 &amp; \cdots  &amp; 0 &amp; c_{N-1} &amp; a_{N-1} &amp; b_{N-1} \\<br>    0 &amp; \cdots  &amp; 0 &amp; 0 &amp; c_N &amp; a_N<br>\end{bmatrix}<br>\begin{bmatrix}<br>    x_1\\<br>    x_2\\<br>    x_3\\<br>    \vdots\\<br>    \vdots\\<br>    x_N<br>\end{bmatrix}=<br>\begin{bmatrix}<br>    Q_1\\<br>    Q_2\\<br>    Q_3\\<br>    \vdots \\<br>    \vdots \\<br>    Q_N<br>\end{bmatrix}<br>\label{eq:4}<br>\end{equation}</p>
+<p>Using Gauss elimination, show that the above matrix can be rewritten as</p>
+<p>\begin{equation}<br>\begin{bmatrix}<br>    a_1^<em> &amp; b_1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 \\<br>    0 &amp; a_2^</em> &amp; b_2 &amp; 0 &amp; \cdots &amp; 0 \\<br>    0 &amp; 0 &amp; a_3^<em> &amp; b_3 &amp; \cdots &amp; \vdots \\<br>    \vdots &amp; \vdots &amp; \ddots  &amp; \ddots  &amp; \ddots  &amp; \vdots \\<br>    0 &amp; \cdots  &amp; 0 &amp; 0 &amp; a_{N-1}^</em> &amp; b_{N-1} \\<br>    0 &amp; \cdots  &amp; 0 &amp; 0 &amp; 0 &amp; a_N^<em><br>\end{bmatrix}<br>\begin{bmatrix}<br>    x_1\\<br>    x_2\\<br>    x_3\\<br>    \vdots\\<br>    \vdots\\<br>    x_N<br>\end{bmatrix}=<br>\begin{bmatrix}<br>    Q_1^</em>\\<br>    Q_2^<em>\\<br>    Q_3^</em>\\<br>    \vdots \\<br>    \vdots \\<br>    Q_N^*<br>\end{bmatrix}<br>\label{eq:5}<br>\end{equation}</p>
+<p>where</p>
+<script type="math/tex; mode=display">
+a_i^*=\begin{cases}
+\ \ \ \ \ \ a_i & \text{for } i=1 \\
+a_i-\dfrac{c_i b_{i-1}}{a_{i-1}^*} & \text{for } i=2,3,\dots,N
+\end{cases}</script><p>and</p>
+<script type="math/tex; mode=display">
+Q_i^*=\begin{cases}
+\ \ \ \ \ \ Q_i & \text{for } i=1 \\
+Q_i-\dfrac{c_i Q_{i-1}^*}{a_{i-1}^*} & \text{for } i=2,3,\dots,N
+\end{cases}</script><p>Thus the solution to original tri-diagonal matrix can be written as</p>
+<script type="math/tex; mode=display">
+x_i=\begin{cases}
+\ \ \ \ \ \ Q_i^*/a_i^* & \text{for } i=N \\
+\dfrac{Q_i^*-b_i x_{i+1}}{a_{i}^*} & \text{for } i=N-1,N-2,\dots,1
+\end{cases}</script><p>The algorithm outlined above is called the <em>Thomas algorithm</em>. It is a very efﬁcient method for solving linear tri-diagonal systems.</p>
+<p>Write a C code using the Thomas algorithm to solve the tri-diagonal system shown in \eqref{eq:4}, Since the tri-diagonal system is a banded matrix, you need not store all the zeros!</p>
+<p>Use your code to solve the following tri-diagonal system<br>\begin{equation}<br>\begin{bmatrix}<br>1 &amp; -2 &amp; 0 &amp; 0 &amp; 0\\<br>2 &amp; 4 &amp; 5 &amp; 0 &amp; 0 \\<br>0 &amp; 8 &amp; -9 &amp; 2 &amp; 0 \\<br>0 &amp; 0 &amp; 6 &amp; 3 &amp; 4 \\<br>0 &amp; 0 &amp; 0 &amp; 6 &amp; 3\\<br>\end{bmatrix}<br>\begin{bmatrix}<br>x_1\\<br>x_2\\<br>x_3\\<br>x_4\\<br>x_5\\<br>\end{bmatrix}=<br>\begin{bmatrix}<br>1\\<br>2\\<br>-3\\<br>4\\<br>5\\<br>\end{bmatrix}<br>\label{eq:6}<br>\end{equation}</p>
+<p>Ensure that you obtain the expected solution shown below.<br>\begin{equation}<br>\begin{bmatrix}<br>x_1\\<br>x_2\\<br>x_3\\<br>x_4\\<br>x_5\\<br>\end{bmatrix}=<br>\begin{bmatrix}<br>0.561782\\<br>-0.219109\\<br>0.350575\\<br>0.954023\\<br>-0.241379\\<br>\end{bmatrix}<br>\label{eq:7}<br>\end{equation}</p>
+<h2>4 Regression</h2>
+
+<p>Here, an alternative way of solving a Least Squares Problem is considered. Recall from the lecture that</p>
+<p>\begin{equation}<br>\begin{bmatrix}<br>\sum_{i=1}^{N} {x_i^2} &amp; \sum_{i=1}^{N} {x_i} \\<br>\sum_{i=1}^{N} {x_i} &amp; N \\<br>\end{bmatrix}<br>\begin{bmatrix}<br>a \\<br>b \\<br>\end{bmatrix}=<br>\begin{bmatrix}<br>\sum_{i=1}^{N} {x_i y_i} \\<br>\sum_{i=1}^{N} {y_i} \\<br>\end{bmatrix}<br>\label{eq:8}<br>\end{equation}<br>is the system of equations for linear regression (\hat{y}=ax+b)<br>Show that:<br>\begin{equation}<br>b=\bar{y}-a \bar{x},   a=\dfrac{\sum_{i=1}^N (x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^N (x_i-\bar{x})^2}<br>\label{eq:9}<br>\end{equation}</p>
+<h2>5 Interpolation</h2>
+
+<p>Given the following data</p>
+<script type="math/tex; mode=display">
+x_0=0 \ \ \ f(x_0)=0 \\
+x_1=1 \ \ \ f(x_0)=11 \\
+x_2=3 \ \ \ f(x_0)=17 \\
+x_3=8 \ \ \ f(x_0)=17 \\</script><p>Write C code that uses both second-order Lagrange interpolating polynomials and cubic splines in order to estimate (f(x)). Estimate the value of (f(x=5)) using both methods. You will implement both methods in interp(), reading in from the ﬁle in_interp.csv the values of x and f (x) and outputting the values of the interpolated value to out_interp.csv in the following format (up to 6 decimal places). The values shown are just an example and do not represent the correct values.</p>
+<h2>6 Differentiation, differential equations</h2>
+
+<p>Write a C program that solves the heat equation<br>\begin{equation}<br>\dfrac{\partial{f}}{\partial{t}}=\mu \dfrac{\partial^2{f}}{\partial{x^2}}<br>\label{eq:10}<br>\end{equation}<br>on the interval (x=[0,1]), and for times (0 \le t \le 2.0), using the diffusion coefficient (\mu=0.005).</p>
+<p>Most transport equations can also be written as<br>\begin{equation}<br>\dfrac{\partial{f}}{\partial{t}}=RHS(f)<br>\label{eq:11}<br>\end{equation}</p>
+<p>where RHS denotes the ‘right-hand-side’ of the equation to be solved, containing all spatial derivatives, in this case (\mu \dfrac{\partial^2{f}}{\partial{x^2}}).</p>
+<p>The heat equation is to be solved on the spatial interval (0 \le x \le 1), that is discretized using (N_x) points (x_i), with (i=0,1,2,\dots,N_x). The equidistant grid spacing therefore is (\Delta{x}=1/N_x).</p>
+<p>In order to discretize the time derivative (\frac{\partial{f}}{\partial{t}}), two different time integration schemes are to be<br>used, an explicit Euler and an implicit Euler scheme, as follows</p>
+<p>\begin{equation}<br>f_i^{n+1}=f_i^n+\Delta{t} \cdot RHS(f_i^n)\text{      (explicit)}\\<br>f_i^{n+1}=f_i^n+\Delta{t} \cdot RHS(f_i^{n+1})\text{   (implicit)}<br>\label{eq:12}<br>\end{equation}</p>
+<p>where (n) is the time index so that (f_i^n) is the function value at time level (n) at point (x_i) and (f_i^{n+1}) is the function value at time level (n+1) at point (x_i), and (\Delta{t}) is the numerical timestep for the time integration.</p>
+<p>A ﬁnite-difference approximation for the spatial derivative is to be coded up, in particular a second-order accurate central scheme:</p>
+<script type="math/tex; mode=display">
+\dfrac{\partial^2{f}}{\partial{x^2}} \approx \dfrac{f_{i+1}-2f_i+f_{i-1}}{\Delta{x^2}} \text{  for } i=1,\dots,N_x-1</script><p>For the boundary points ((i=0,N_x)), there are two conditions you will test out: ﬁxed ends and variables ends. You will test both conditions for the explicit routine and just ﬁxed ends for the<br>implicit routine.</p>
+<h3>6.1 Fixed Ends</h3>
+
+<p>For (i=0) and (i=N_x), the value of the (RHS(f_i)) is 0.0</p>
+<h3>6.2 Variables Ends</h3>
+
+<p>For (i=0), use the boundary stencil</p>
+<script type="math/tex; mode=display">
+\dfrac{\partial^2{f}}{\partial{x^2}} \approx \dfrac{f_{i}-2f_{i+1}+f_{i+2}}{\Delta{x^2}}</script><p>and for (i=N_x) use the boundary stencil</p>
+<script type="math/tex; mode=display">
+\dfrac{\partial^2{f}}{\partial{x^2}} \approx \dfrac{f_{i}-2f_{i-1}+f_{i-2}}{\Delta{x^2}}</script><p>The initial condition for (f) is</p>
+<script type="math/tex; mode=display">
+f(x,t=0)=
+\begin{cases}
+0 & 0 \le x \lt 0.125 \\
+0.5[1-\cos{8\pi(x-0.125)}] & 0.125 \le x \le 0.375 \\
+0 & 0.375 \lt x \le 1
+\end{cases}</script>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://eedaixie.github.io/2017/12/17/c-ENGR30003/" data-id="ck51up9g600056gzw5nh37iz2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/19/mathematica-MTH1030/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Mathematica代写：MTH1030 Assignment 1, 2017-3d modelling and chemistry applications
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/12/16/math-MAT423/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Math代写：MAT423</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/12/19/python-CSCA48/">Python代写：CSCA48 Snakes And Ladders</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/16/c++-CS206/">C++代写：CS206 Email Handler</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/19/c-CSE320/">C语言代写：CSE320 SFISH Shell</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/11/java-SWEN20003/">Java代写：SWEN20003 Graphical Game Engine</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/05/c-COMP10002/">C代写：COMP10002 Indexed Document Retrieval</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 eedaixie<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Java代写：CS201 Hash Table, Hash Function Comparison and Optional BST in C | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="使用不同的实现方式实现Hash Table。&lt;&#x2F;p&gt; Overview  For this assignment, you will implement a hash table and experiment using various hashing methods to try and minimize collisions. To simplify implementation,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java代写：CS201 Hash Table, Hash Function Comparison and Optional BST in C">
+<meta property="og:url" content="http://eedaixie.github.io/2018/05/23/java-CS201/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="使用不同的实现方式实现Hash Table。&lt;&#x2F;p&gt; Overview  For this assignment, you will implement a hash table and experiment using various hashing methods to try and minimize collisions. To simplify implementation,">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-05-24T01:19:00.000Z">
+<meta property="article:modified_time" content="2020-01-06T00:19:10.069Z">
+<meta property="article:author" content="eedaixie">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://eedaixie.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-java-CS201" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/23/java-CS201/" class="article-date">
+  <time datetime="2018-05-24T01:19:00.000Z" itemprop="datePublished">2018-05-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java代写：CS201 Hash Table, Hash Function Comparison and Optional BST in C
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用不同的实现方式实现Hash Table。<br><a id=more></a>&lt;/p&gt;</p>
+<h2 id=Overview><a href=#Overview class=headerlink title=Overview></a>Overview</h2>
+
+<p>For this assignment, you will implement a hash table and experiment using various hashing methods to try and minimize collisions. To simplify implementation, you will be using separate chaining to resolve collisions. Additionally, you will generate statistics on the performance of your hash table, which will be written to a file.</p>
+<a id="more"></a>
+<h2 id=Part-1-Hash-Table><a href=#Part-1-Hash-Table class=headerlink title="Part 1 - Hash Table"></a>Part 1 - Hash Table</h2>
+
+<p>In this part, you will implement a basic Hash Table. We have provided you with an interface and starter code that implements that interface. Fill in the blanks to complete given methods.</p>
+<h3 id=Implementation-Details><a href=#Implementation-Details class=headerlink title="Implementation Details"></a>Implementation Details</h3>
+
+<p>You will be implementing the IHashTable interface, as additional required private helper methods. See method descriptions for details. The benefits of a hash table are a result of the ability to hash a value and then immediately locate its position if there are no collisions, or vastly narrow down the search space if there are. As such, you shouldn’t need to search through the entire table to find an element for your contains() and delete() methods.</p>
+<p>Your hash table will be used exclusively to store strings, as this is the type of hash table that would be used to store a dictionary of words for uses such as spell check.</p>
+<p>To resolve collisions, use will be using separate chaining. One way of implementing this would be to have your backing storage be an array of LinkedLists. Then you would simply add to the LinkedList at the specified index when inserting elements into your hash table. The performance of hash tables degrades if there are too many collisions. As such, you will keep track of the load factor of the table (the ratio of the size of the table to the number of elements) and once this value exceeds , you must double the size of the table and rehash all of the values. You will be implementing a private helper method rehash() to accomplish this.</p>
+<p>You will be implementing three different hash functions. You must implement a rolling hash using Horner’s Method, as well as two other hash functions of your choosing. A list of possible hash functions are provided in the starter files, but feel free to use other hash functions as well. Remember, at the minimum your hash functions must be deterministic, although your goal is for them to be uniform and fast. You will later compare the performance of the hash functions and record your results in HW5.txt.</p>
+<p>You must actually implement the algorithms in your HashTable class. If you use String.hashCode(), you not receive any credit for this assignment.</p>
+<h3 id=Hash-Table-Methods><a href=#Hash-Table-Methods class=headerlink title="Hash Table Methods"></a>Hash Table Methods</h3>
+
+<h4 id=public-boolean-insert-String-value><a href=#public-boolean-insert-String-value class=headerlink title="public boolean insert(String value)"></a>public boolean insert(String value)</h4>
+
+<p>Insert the string value into the hash table, returning true if the value was inserted and false if the value was already present.<br>Throws:<br>NullPointerException if value is null</p>
+<h4 id=public-boolean-delete-String-value><a href=#public-boolean-delete-String-value class=headerlink title="public boolean delete(String value)"></a>public boolean delete(String value)</h4>
+
+<p>Delete the given value from the hash table, returning true if the value was deleted and false if the value could not be found.<br>Throws:<br>NullPointerException if value is null</p>
+<h4 id=public-boolean-contains-String-value><a href=#public-boolean-contains-String-value class=headerlink title="public boolean contains(String value)"></a>public boolean contains(String value)</h4>
+
+<p>Check if the given value is present in the hash table, returning true if it is and false otherwise.<br>Throws:<br>NullPointerException if value is null</p>
+<h4 id=public-void-printTable><a href=#public-void-printTable class=headerlink title="public void printTable()"></a>public void printTable()</h4>
+
+<p>Print the contents of the hash table, printing nothing if the table is empty. See appendix for example output.</p>
+<h4 id=public-int-getSize><a href=#public-int-getSize class=headerlink title="public int getSize()"></a>public int getSize()</h4>
+
+<p>Accessor for the number of elements currently stored in the hash table.</p>
+<h4 id=private-void-rehash><a href=#private-void-rehash class=headerlink title="private void rehash()"></a>private void rehash()</h4>
+
+<p>Expand the size of the hash table and rehash the elements. Called when the load factor passes a threshold.</p>
+<h3 id=Keeping-Statistics><a href=#Keeping-Statistics class=headerlink title="Keeping Statistics"></a>Keeping Statistics</h3>
+
+<p>You should keep track and report the following information for the hash table</p>
+<ul><li>The number of times you had to expand the table.</li><li>The load factor in the table (before resizing), trimmed to 2 decimal places.</li><li>The number of insertions that encountered a collision (before resizing).</li><li>The length of the longest known collision chain (before resizing).</li></ul>
+
+<p>Note that all but the first of these statistics will need to be reinitialized (reset) whenever you expand the table.</p>
+<p>Write it out to a text file in the following format r, c, n are integers, alpha is floating point number), each time you do a resize and rehash. Append a new set of values for each rehash.</p>
+<p>r resizes, load factor alpha, c collisions, n longest chain</p>
+<p>Notice the two constructors in HashTable class in the starter code provided. One takes in the initial size(any <code>value &gt; 0</code>), while the other constructor takes in a filename as well as a size. The boolean ‘printStats’ is set to false by default, and is only changed to true in the constructor that receives a filename. Each time you expand and rehash your table, you must check if this boolean is set to true, and if yes, you must write the current statistics to the file before rehashing.</p>
+<p>For example, after, say, 4 rehashes, the file will have the following lines:</p>
+<ul><li>1 resizes, load factor 0.67, 1 collisions, 2 longest chain</li><li>2 resizes, load factor 0.67, 7 collisions, 2 longest chain</li><li>3 resizes, load factor 0.75, 55 collisions, 6 longest chain</li><li>4 resizes, load factor 0.68, 221 collisions, 14 longest chain</li></ul>
+
+<p>There is no ‘correct statistics’ and your numbers will change depending on what hash function and initial table size you chose. These values will only indicate how good your chosen hash function is.</p>
+<h3 id=HashTable-Tester><a href=#HashTable-Tester class=headerlink title="HashTable Tester"></a>HashTable Tester</h3>
+
+<p>Your tester must test the insert(), contains(), delete() and getSize() methods thoroughly. Note that printTable() is only present for you to test your hash table during implementation, and as such does not need to be tested for an exact output string. However, this method must still be implemented. See the appendix for sample formatting.</p>
+<p>You can test the 2-arg constructor by passing a local file path and making sure that the stats are printed to the file. However, when you submit your tester, make sure you remove/comment this test as your submitted file must not have any local file path.</p>
+<h3 id=Hash-Analysis><a href=#Hash-Analysis class=headerlink title="Hash Analysis"></a>Hash Analysis</h3>
+
+<p>Remember that a good hash function is fast, deterministic, and uniform. For the final part of this assignment, you will be evaluating your hash functions on these categories.</p>
+<p>A good way to test the relative performance of your hashing methods is to build a dictionary with the provided files. To do this, you would read the provided longDictionary.txt or simpleDictionary.txt and treat each line read as a single word to insert into your table. Make sure that you specify a file to record your statistics to so that you have concrete data to reference with your explanations.</p>
+<p>For each Hash function, describe the performance that it displayed. To assess whether or not it is uniform, consider the following questions:</p>
+<ul><li>How effective was it at preventing collisions?</li><li>When collisions occurred, did it have have many short chains or a few long ones?</li></ul>
+
+<p>Keep in mind that for a hash function to be useable, it must be deterministic. Mention briefly why each function satisfies this property.</p>
+<p>Finally, describe the runtime performance for calculating the hash. A good way to do this would be to use the same dictionary file as before, but instead of building the complete table, just record the time it takes to hash the values. To do this, call the protected hash() function with each of the enum values.</p>
+<p>Record your findings in HW5.txt</p>
+<h2 id=Extra-Credit-BST-in-C><a href=#Extra-Credit-BST-in-C class=headerlink title="Extra Credit - BST in C"></a>Extra Credit - BST in C</h2>
+
+<p>You will be implementing a Binary Search Tree in C. You have been provided with started code in BinaryTree.c. Input/Output for this assignment will be handled through the command line. The values inserted into your BST will be strings of max length 100. Your BST will have the ability to insert, search, and print the entire tree in order. See the appendix for specific help with C.</p>
+<h3 id=Function-Descriptions><a href=#Function-Descriptions class=headerlink title="Function Descriptions"></a>Function Descriptions</h3>
+
+<h4 id=int-compare-char-a-char-b><a href=#int-compare-char-a-char-b class=headerlink title="int compare(char a, char b)"></a>int compare(char <em>a, char</em>b)</h4>
+
+<p>Mimics the functionality of strcmp()<br>Returns:<br>0 if both strings are equal<br>Negative if the first non-matching character has a lower ascii value in a than b<br>Positive if the first non-matching character has a higher ascii value in a than b<br>DO NOT use strcmp() in the implementation of compare</p>
+<h4 id=void-insert><a href=#void-insert class=headerlink title="void insert()"></a>void insert()</h4>
+
+<p>Adds a node with the input value to the tree. Smaller strings are inserted on the left and larger on the right. If the element is a duplicate, do nothing.</p>
+<p>You will need to use malloc to allocate memory for each new node that is inserted. The parameter to malloc() is the size in bytes; just passing the number of elements is not correct.</p>
+<h4 id=void-find><a href=#void-find class=headerlink title="void find()"></a>void find()</h4>
+
+<p>Search the tree for a node containing the string the user inputs as its value. Prints “Found: “ node value value (using printNode()) if the node is present. Otherwise prints “Not found: “ followed by user input.</p>
+<p>See sample output for examples</p>
+<h4 id=void-traverse><a href=#void-traverse class=headerlink title="void traverse()"></a>void traverse()</h4>
+
+<p>Traverse will output an inorder traversal of the values in the tree nodes. Use printNode to print the values of the nodes. If the tree is empty nothing will be printed.<br>See sample output for examples.</p>
+<p>You may choose to implement the functionalities of the binary tree in any order but the following is recommended:</p>
+<ol><li>compare():<br>You will need a strong understanding of how strings are represented in C to complete this part of the assignment. Consult your notes/online resources. You cannot use strcmp() in your implementation, however you can check your output against strcmp().</li><li>insert():<br>You should be familiar with how nodes are inserted into a BST. The tricky thing about this portion is allocating memory for new nodes using malloc. Make sure you understand how malloc works before you attempt to implement insert!</li><li>find():<br>Again something you all should be familiar with. No tricks here.</li><li>traverse():<br>This is a simple in order traversal of your BST. This can be accomplished iteratively or recursively. You are free to use helper methods here.</li></ol>
+
+<p>Your output must match the Sample Output!</p>
+<h3 id=Important-Information><a href=#Important-Information class=headerlink title="Important Information"></a>Important Information</h3>
+
+<p>Do not edit any code marked “DO NOT EDIT”<br>You may edit main for the purposes of testing but when you turn in your code it must match the starter code. You may use helper methods if you see fit, but be aware - in C methods must be declared before they are used.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://eedaixie.github.io/2018/05/23/java-CS201/" data-id="ck51up9g700066gzw93x18iy1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/09/03/python-CS110/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Python代写：CS110 Higher Order Functions
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/05/23/python-CSSE1001/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python代写：CSSE1001/7030-Assignment 2</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/12/19/python-CSCA48/">Python代写：CSCA48 Snakes And Ladders</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/16/c++-CS206/">C++代写：CS206 Email Handler</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/19/c-CSE320/">C语言代写：CSE320 SFISH Shell</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/11/java-SWEN20003/">Java代写：SWEN20003 Graphical Game Engine</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/05/c-COMP10002/">C代写：COMP10002 Indexed Document Retrieval</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 eedaixie<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
